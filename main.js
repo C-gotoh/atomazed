@@ -11,8 +11,8 @@ function shit() {
     if (jaws.pressed("d")) {player.move(speed, 0)};
     if (jaws.pressed("s")) {player.move(0, speed)};
     if (jaws.pressed("w")) {player.move(0, -speed)};
-    if (jaws.pressed("up")) {speed++};
-    if (jaws.pressed("down")) {speed--};
+    if (jaws.pressed("up") && speed < 10) {speed++};
+    if (jaws.pressed("down") && speed > 1) {speed--};
   }
 
   this.draw = function() {
