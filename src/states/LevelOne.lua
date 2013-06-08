@@ -98,12 +98,10 @@ function LevelOne:update(dt)
 
     for index, el in pairs(self.el) do 
         fraction(el)
-        print(el.body:getLinearVelocity())
 end
     if love.mouse.isDown("l") then
     	down = true
     	self.force = self.force + dt
-    	print(down)
     elseif down then
     	Shock:fire(self.force)
     	down = false
