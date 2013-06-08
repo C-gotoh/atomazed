@@ -1,6 +1,6 @@
-shock-effect = class("shock-effect")
+Shockeffect = class("shockeffect")
 
-function show-effect:__init(world, x, y)
+function Shockeffect:__init(world, x, y)
 	self.body = love.physics.newBody(world, x, y, "dynamic")
 	self.shape = love.physics.newCircleShape(20)
 	self.fixture = love.physics.newFixture(self.body, self.shape)
@@ -8,7 +8,7 @@ function show-effect:__init(world, x, y)
 	self.wobble = 1
 end
 
-function shock-effect:update(dt)
+function Shockeffect:update(dt)
 	if self.flag == true then
 		self.wobble = self.wobble + dt*0.2
 		if self.wobble > 1 then
@@ -22,7 +22,7 @@ function shock-effect:update(dt)
 	end
 end
 
-function shock-effect:draw()
+function Shockeffect:draw()
 	love.graphics.setColor(255, 37, 0, 80)
 	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 25*self.wobble)
 	love.graphics.setColor(255, 37, 0, 120)

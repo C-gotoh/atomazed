@@ -8,7 +8,7 @@ require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
-require("classes/biribiri")
+require("classes/shockeffect")
 
 LevelOne = class("LevelOne", State)
 
@@ -29,6 +29,8 @@ function LevelOne:load()
     self.portal = {}
     table.insert(self.all, self.portal)
     self.positionQueue = {}
+    table.insert(self.all, self.shockeffect)
+    self.shockeffect = {}
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -75,6 +77,9 @@ function LevelOne:load()
 
 --    portal = Portal(world, 100, 300, 800, 200)
 --    table.insert(self.portal, portal)
+
+    shockeffect = Shockeffect(world, 200, 200)
+    table.insert(self.shockeffect, shockeffect)
 
     self.darkness = 0 
     self.maxElectrons = 22
