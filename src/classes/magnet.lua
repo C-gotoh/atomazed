@@ -14,7 +14,7 @@ function Magnet:addForce(a)
     local distance = math.sqrt((posAx - posMx)^2 + (posAy - posMy)^2)
 
     if distance < self.fr then
-        local vectorscale = math.cos (distance * (1/self.force))
+        local vectorscale = (self.fr/distance) * (1/self.force)
         forcevectorx = vectorscale*(posMx - posAx)
         forcevectory = vectorscale*(posMy - posAy)
         newvectorx, newvectory = a.body:getLinearVelocity()
