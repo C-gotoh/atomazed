@@ -171,7 +171,7 @@ end
 
 --Collision function
 function beginContact(a, b, coll)
-    levelone:beginContact(a, b, coll)
+    level1:beginContact(a, b, coll)
 end
 
 function LevelOne:beginContact(a, b, coll)

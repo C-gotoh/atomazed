@@ -39,7 +39,7 @@ function GameOverState:update(dt)
             stack:pop()
             local int = stack:current().index
             stack:pop()
-            stack:push(levels[int])
+            stack:push(levels[int+1])
         elseif self.index == 3 then
             stack:pop()
             stack:current():restart()

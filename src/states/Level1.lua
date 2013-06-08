@@ -13,14 +13,14 @@ require("classes/explosion")
 require("classes/shockeffect")
 
 
-LevelOne = class("LevelOne", State)
+Level1 = class("Level1", State)
 
-function LevelOne:__init()
+function Level1:__init()
     self.force = 0
     self.index = 1
 end
 
-function LevelOne:load()
+function Level1:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -93,7 +93,7 @@ function LevelOne:load()
     self.minElectrons = 1
 end
 
-function LevelOne:update(dt)
+function Level1:update(dt)
     world:update(dt)
     if self.minElectrons >= #self.el then
         local canvas = love.graphics.newScreenshot()
@@ -162,7 +162,7 @@ function LevelOne:update(dt)
     end
 end
 
-function LevelOne:draw()
+function Level1:draw()
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
             if whatever.draw then
@@ -175,12 +175,12 @@ function LevelOne:draw()
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
-function LevelOne:restart()
+function Level1:restart()
     self:__init()
     self:load()
 end
 
-function LevelOne:keypressed(key, u)
+function Level1:keypressed(key, u)
     if key == "r" then
         self:restart()
     elseif key == "escape" then
@@ -190,15 +190,15 @@ function LevelOne:keypressed(key, u)
 end
 
 
-function LevelOne:mousepressed(x, y, button)
+function Level1:mousepressed(x, y, button)
 end
 
 --Collision function
 function beginContact(a, b, coll)
-    levelone:beginContact(a, b, coll)
+    level1:beginContact(a, b, coll)
 end
 
-function LevelOne:beginContact(a, b, coll)
+function Level1:beginContact(a, b, coll)
     local objecta = a:getUserData()
     local objectb = b:getUserData()
 
