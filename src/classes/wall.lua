@@ -8,5 +8,6 @@ function Wall:__init(world, x, y, l, h, type)
 end
 
 function Wall:draw()
+	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
 end

@@ -2,7 +2,7 @@ require("core/resources")
 require("core/stackhelper")
 require("core/helper")
 
-require("states/MainState")
+require("states/LevelOne")
 require("states/MenuState")
 
 
@@ -24,7 +24,7 @@ function love.load()
     love.graphics.setMode(1024, 768, false, true, 0) -- Fensteroberfläche
 
     stack = StackHelper()
-    main = MainState()
+    levelone = LevelOne()
     menu = MenuState()
     
     stack:push(menu)
