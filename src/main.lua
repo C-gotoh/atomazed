@@ -1,6 +1,7 @@
 require("util/resources")
 require("util/gamestack")
 
+require("states/Level")
 require("states/MenuState")
 require("states/LevelOne")
 
@@ -15,6 +16,15 @@ end
 
 function love.load()
     resources:addFont("normal", "DejaVuSans.ttf", 20)
+    resources:addFont("seventeen", "SwankyandMooMoo.ttf", 17)
+    resources:addFont("twenty", "SwankyandMooMoo.ttf", 20)
+    resources:addFont("twentyfive", "SwankyandMooMoo.ttf", 25)
+    resources:addFont("thirty", "SwankyandMooMoo.ttf", 30)
+    resources:addFont("forty", "SwankyandMooMoo.ttf", 40)
+    resources:addFont("fifty", "SwankyandMooMoo.ttf", 60)
+    
+    resources:addFont("default", "SwankyandMooMoo.ttf", 20)
+    resources:addFont("big", "SwankyandMooMoo.ttf", 60)
 
     resources:load()
   
