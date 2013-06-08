@@ -3,6 +3,7 @@ require("core/physicshelper")
 require("core/state")
 
 require("classes/wall")
+require("classes/coloredwall")
 require("classes/electron")
 require("classes/proton")
 require("classes/magnet")

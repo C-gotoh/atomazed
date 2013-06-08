@@ -3,6 +3,7 @@ require("core/physicshelper")
 require("core/state")
 
 require("classes/wall")
+require("classes/coloredwall")
 require("classes/electron")
 require("classes/proton")
 require("classes/magnet")
@@ -60,14 +61,17 @@ function Level:load()
     proton.body:setLinearVelocity(0, 100)
     table.insert(self.proton, proton)
 
-
     local el = Electron(world, 100, 200)
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
+    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
+    table.insert(self.wall, cwall)
+
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 50
+    self.minElectrons = -1
+    self.endtimer = 0
 end
 
 function Level:update(dt)
