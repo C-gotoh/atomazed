@@ -40,7 +40,7 @@ function LevelOne:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 400)
+    el.body:setLinearVelocity(0, 100)
     table.insert(self.el, el)
 
     el = Electron(world, 750, 450)
@@ -55,16 +55,16 @@ function LevelOne:load()
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    magnet = Magnet(world, 250, 400, 20, 200, 8, "Electron")
+    magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 800, 400, 20, 200, 7, "Proton")
+    magnet = Magnet(world, 800, 400, 20, 200, 12, "Proton")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 350, 200, 20, 200, 8, "Electron")
+    magnet = Magnet(world, 350, 200, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 700, 200, 20, 200, 7, "Proton")
+    magnet = Magnet(world, 700, 200, 20, 200, 12, "Proton")
     table.insert(self.magnet, magnet)
 
 end
@@ -104,6 +104,8 @@ function LevelOne:draw()
             end
         end
     end
+    love.graphics.setColor(0, 0, 0, 255*self.darkness)
+    love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
 function LevelOne:restart()
