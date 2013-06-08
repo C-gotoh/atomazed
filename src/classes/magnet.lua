@@ -8,6 +8,8 @@ function Magnet:__init(world, x, y, r, fr, force, typ)
     self.fixture:setUserData(self)
     self.fr = fr -- range
     self.rangevisual = self.fr
+    self.rangevisual2 = self.fr
+    self.variabler = self.fr
     self.force = force
     self.type = typ
     self.counter = 0
@@ -32,13 +34,23 @@ function Magnet:addForce(object)
 end
 
 function Magnet:update(dt)
+    
+
+
+
     if self.rangevisual < self.radius then
         self.rangevisual = self.fr
         self.counter = 0
     end
     
     self.rangevisual = self.rangevisual - (1+self.counter)
-    self.counter = self.counter + 0.03
+    self.counter = self.counter + 0.01
+
+
+
+    self.rangevisual2 = self.rangevisual2 + 0.05
+
+    self.variabler = 10*(math.sin(self.rangevisual2))+self.radius+15
 
 end
 
@@ -60,6 +72,12 @@ function Magnet:draw()
 
         --visualize
         love.graphics.setColor(255, 37, 0, self.color_fac * 80)
+        love.graphics.circle("line", self.body:getX(), self.body:getY(), self.variabler)
+
+        love.graphics.setColor(255, 255, 255, 5)
+        love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.rangevisual)
+
+        love.graphics.setColor(255, 37, 0, self.color_fac * 80)
         love.graphics.circle("line", self.body:getX(), self.body:getY(), self.rangevisual)
 
     elseif self.type == "Proton" then
@@ -78,6 +96,12 @@ function Magnet:draw()
 
         --visualize
         love.graphics.setColor(56, 222, 255, self.color_fac * 80)
+        love.graphics.circle("line", self.body:getX(), self.body:getY(), self.variabler)
+
+        love.graphics.setColor(255, 255, 255, 5)
+        love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.rangevisual)
+
+        love.graphics.setColor(255, 222, 255, self.color_fac * 80)
         love.graphics.circle("line", self.body:getX(), self.body:getY(), self.rangevisual)
     end 
 end
