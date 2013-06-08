@@ -6,7 +6,7 @@ end
 function Magnet:addForce(a)
     local posAx, posAy = a.body:getPosition()
     local posMx, posMy = self.body:getPosition()
-    local distance = math.sqrt((posAx - posMx})^2 + (posAy - posBy)^2)
+    local distance = math.sqrt((posAx - posMx)^2 + (posAy - posBy)^2)
 
     if distance < r then
         local vectorscale = math.cos (distance * (1/force))
