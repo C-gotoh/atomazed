@@ -70,13 +70,13 @@ function LevelOne:load()
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
+    magnet = Magnet(world, 250, 400, 20, 200, 30, "Electron")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 800, 400, 20, 200, 12, "Proton")
+    magnet = Magnet(world, 800, 400, 20, 200, 20, "Proton")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 350, 200, 20, 200, 12, "Proton")
+    magnet = Magnet(world, 350, 200, 20, 200, 40, "Proton")
     table.insert(self.magnet, magnet)
 
     magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
