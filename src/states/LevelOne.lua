@@ -40,28 +40,49 @@ function LevelOne:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(300, 400)
+    el.body:setLinearVelocity(0, 100)
     table.insert(self.el, el)
 
-    --[[el = Electron(world, 100, 100)
-    el.body:setLinearVelocity(0, 400)
-    table.insert(self.el, el)
-
-    magnet = Magnet(world, 250, 400, 20, 200, 8)
-    table.insert(self.magnet, magnet)
-
-    magnet = Magnet(world, 600, 400, 20, 200, 10)
-    table.insert(self.magnet, magnet)
-
-    magnet = Magnet(world, 350, 200, 20, 200, 8)
-    table.insert(self.magnet, magnet)
-
-    magnet = Magnet(world, 700, 200, 20, 200, 10)
-    table.insert(self.magnet, magnet)
+    el = Electron(world, 750, 450)
+    el.body:setLinearVelocity(0, 0)
+   table.insert(self.el, el)
 
     proton = Proton(world, 400, 100)
-    proton.body:setLinearVelocity(0, 300)
-    table.insert(self.proton, proton)  --]]
+    proton.body:setLinearVelocity(0, 100)
+    table.insert(self.proton, proton)
+
+
+    proton = Proton(world, 300, 450)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    for i = 1, 20, 1 do
+        proton = Proton(world, math.random(50, 1000), math.random(50, 550))
+        proton.body:setLinearVelocity(math.random(0, 400), math.random(0, 400))
+        table.insert(self.proton, proton)
+    end
+
+    for i = 1, 20, 1 do
+        el = Electron(world, math.random(50, 1000), math.random(50, 550))
+        el.body:setLinearVelocity(math.random(0, 400), math.random(0, 400))
+        table.insert(self.el, el)
+    end
+
+    magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    magnet = Magnet(world, 800, 400, 20, 200, 12, "Proton")
+    table.insert(self.magnet, magnet)
+
+    magnet = Magnet(world, 350, 200, 20, 200, 12, "Proton")
+    table.insert(self.magnet, magnet)
+
+    magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    self.darkness = 0 
+    self.maxElectrons = 22
+    self.minElectrons = 18
 end
 
 function LevelOne:update(dt)
@@ -69,6 +90,9 @@ function LevelOne:update(dt)
     for index, magnet in pairs(self.magnet) do
         for index2, el in pairs(self.el) do
             magnet:addForce(el)
+        end
+        for index2, proton in pairs(self.proton) do
+            magnet:addForce(proton)
         end
     end
 
@@ -102,14 +126,20 @@ function LevelOne:draw()
             end
         end
     end
+    self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
+    love.graphics.setColor(0, 0, 0, 255*self.darkness)
+    love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
 function LevelOne:restart()
-    world:destroy()
     self:__init()
+    self:load()
 end
 
 function LevelOne:keypressed(key, u)
+    if key == "r" then
+        self:restart()
+    end
 end
 
 
@@ -118,4 +148,38 @@ end
 
 --Collision function
 function beginContact(a, b, coll)
+    levelone:beginContact(a, b, coll)
+end
+
+function LevelOne:beginContact(a, b, coll)
+    local objecta = a:getUserData()
+    local objectb = b:getUserData()
+
+    if (objecta.__name == "Proton") and (objectb.__name == "Electron") then
+        for index, value in pairs(self.el) do 
+            if value == objectb then
+                table.remove(self.el, index)
+                value.body:destroy()
+            end
+        end
+        for index, value in pairs(self.proton) do
+            if value == objecta then
+                table.remove(self.proton, index)
+                value.body:destroy()
+            end
+        end
+    elseif (objecta.__name == "Electron") and (objectb.__name == "Proton") then
+        for index, value in pairs(self.el) do 
+            if value == objecta then
+                table.remove(self.el, index)
+                value.body:destroy()
+            end
+        end
+        for index, value in pairs(self.proton) do
+            if value == objectb then
+                table.remove(self.proton, index)
+                value.body:destroy()
+            end
+        end
+    end
 end
