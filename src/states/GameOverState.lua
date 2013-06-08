@@ -3,7 +3,7 @@ require("core/helper")
 GameOverState = class("GameOverState", State)
 
 function GameOverState:__init()
-    self.menulist = {"Main Menu", "Restart" , "Exit"}
+    self.menulist = {"Main Menu", "Next Level" , "Restart"}
 end
 
 function GameOverState:load()
@@ -34,12 +34,15 @@ function GameOverState:update(dt)
         if self.index == 1 then
             stack:pop()
             stack:pop()
-            main:restart()
+            stack:current():load()
         elseif self.index == 2 then
-            main:restart()
             stack:pop()
+            local int = stack:current().index
+            stack:pop()
+            stack:push(levels[int])
         elseif self.index == 3 then
-            love.event.quit()
+            stack:pop()
+            stack:current():restart()
         end
     end
 end

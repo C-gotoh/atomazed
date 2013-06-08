@@ -4,7 +4,6 @@ require("core/resources")
 CreditsState = class("CreditsState", State)
 
 function CreditsState:__init()
-    self.bg = resources.images.arena
     self.names = {
                     {"Code:", "Arne Beer", "Hans-Ole", "Julian Tobergte"}, 
                     {"Graphics:", "Arne Beer", "Hans-Ole", "Julian Tobergte"}, 
@@ -18,10 +17,8 @@ function CreditsState:load()
 end
 
 function CreditsState:draw()
-    love.graphics.setColor(255, 255, 255)
-    love.graphics.draw(self.bg, 0, 0)
 
-    love.graphics.setColor(0, 0, 0)
+    love.graphics.setColor(255, 255, 255, 255)
     local y = 30
     for i = 1, #self.names, 1 do
         y = y + resources.fonts.default:getHeight()

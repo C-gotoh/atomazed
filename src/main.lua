@@ -6,6 +6,7 @@ require("core/helper")
 require("states/LevelOne")
 require("states/MenuState")
 require("states/GameOverState")
+require("states/CreditsState")
 
 
 function love.load()
@@ -29,6 +30,7 @@ function love.load()
     stack = StackHelper()
     menu = MenuState()
     gameover = GameOverState()
+    credit = CreditsState()
     levels = {}
     levelone = LevelOne()
     levels[1] = levelone

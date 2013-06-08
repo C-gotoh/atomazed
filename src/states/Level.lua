@@ -159,6 +159,9 @@ end
 function LevelOne:keypressed(key, u)
     if key == "r" then
         self:restart()
+    elseif key == "escape" then
+        stack:pop()
+        stack:current():load()
     end
 end
 
