@@ -48,7 +48,7 @@ function LevelOne:load()
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
---[[el = Electron(world, 750, 450)
+    el = Electron(world, 750, 450)
     el.body:setLinearVelocity(0, 0)
    table.insert(self.el, el)
 
@@ -71,10 +71,10 @@ function LevelOne:load()
     table.insert(self.magnet, magnet)
 
     magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)]]
+    table.insert(self.magnet, magnet)
 
-    portal = Portal(world, 100, 300, 800, 200)
-    table.insert(self.portal, portal)
+--    portal = Portal(world, 100, 300, 800, 200)
+--    table.insert(self.portal, portal)
 
     self.darkness = 0 
     self.maxElectrons = 22
@@ -89,6 +89,29 @@ function LevelOne:update(dt)
         end
         for index2, proton in pairs(self.proton) do
             magnet:addForce(proton)
+        end
+    end
+
+    for index, proton in pairs(self.proton) do
+        for indexzwo, protonzwo in pairs(self.proton) do
+            if proton ~= protonzwo then
+                proton:addForce(protonzwo)
+            end
+        end
+    end
+
+    for index, electron in pairs(self.el) do
+        for indexzwo, electronzwo in pairs(self.el) do
+            if electron ~= electronzwo then
+                electron:addForce(electronzwo)
+            end
+        end
+    end
+
+    for index, proton in pairs(self.proton) do
+        for index, electron in pairs(self.el) do
+            proton:addForce(electron)
+            electron:addForce(proton)
         end
     end
 
@@ -131,7 +154,7 @@ function LevelOne:draw()
         end
     end
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
-    love.graphics.setColor(0, 0, 0, 255*self.darkness)
+    love.graphics.setColor(0, 0, 0, 0*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 

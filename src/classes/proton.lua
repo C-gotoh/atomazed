@@ -5,7 +5,10 @@ function Proton:__init(world, x, y)
 	self.shape = love.physics.newCircleShape(20)
 	self.fixture = love.physics.newFixture(self.body, self.shape)
 	self.fixture:setUserData(self)
+	self.fixture:setRestitution(0.5)  
 	self.wobble = 1
+	self.fr = 100
+	self.force = 15
 end
 
 function Proton:update(dt)
@@ -20,6 +23,23 @@ function Proton:update(dt)
 			self.flag = true
 		end
 	end
+end
+
+function Proton:addForce(object)
+    local posAx, posAy = object.body:getPosition()
+    local posMx, posMy = self.body:getPosition()
+    local distance = math.sqrt((posAx - posMx)^2 + (posAy - posMy)^2)
+
+    if distance < self.fr then
+        local vectorscale = (self.fr/distance) * (1/self.force)
+        if object.__name ~= self.type then
+            vectorscale = -vectorscale
+        end
+        forcevectorx = vectorscale*(posMx - posAx)
+        forcevectory = vectorscale*(posMy - posAy)
+        newvectorx, newvectory = object.body:getLinearVelocity()
+        object.body:applyForce(forcevectorx,forcevectory)
+    end
 end
 
 function Proton:draw()
