@@ -172,7 +172,7 @@ end
 
 --Collision function
 function beginContact(a, b, coll)
-    level1:beginContact(a, b, coll)
+    stack:current():beginContact(a, b, coll)
 end
 
 function Level:beginContact(a, b, coll)
