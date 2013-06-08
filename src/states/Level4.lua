@@ -54,26 +54,43 @@ function Level4:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
+    local magnet = Magnet(world, 500, 550, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
-    local proton = Proton(world, 400, 100)
-    proton.body:setLinearVelocity(0, 100)
+    local magnet = Magnet(world, 500, 50, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    local proton = Proton(world, 800, 100)
+    proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 100, 200)
+    local proton = Proton(world, 850, 200)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 800, 300)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local el = Electron(world, 50, 50)
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
-    table.insert(self.walls, cwall)
+    local el = Electron(world, 100, 100)
+    el.body:setLinearVelocity(0, 800)
+    table.insert(self.el, el)
+
+
+
+    --local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
+    --table.insert(self.walls, cwall)
 
     self.darkness = 0 
     self.maxElectrons = 22
     self.minElectrons = -1
     self.endtimer = 0
 
-    self.limitshock = 3
+    self.limitshock = 4
     self.limitmagnet1 = 0
     self.limitmagnet2 = 0
 
