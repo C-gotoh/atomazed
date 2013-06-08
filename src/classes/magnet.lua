@@ -18,7 +18,7 @@ function Magnet:addForce(a)
         forcevectorx = vectorscale*(posMx - posAx)
         forcevectory = vectorscale*(posMy - posAy)
         newvectorx, newvectory = a.body:getLinearVelocity()
-        a.body:setLinearVelocity((newvectorx+forcevectorx),(newvectory+forcevectory))
+        a.body:applyForce(forcevectorx,forcevectory)
     end
 end
 

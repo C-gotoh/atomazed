@@ -1,5 +1,5 @@
-function distance(x, y, x2, y2)
-	dx = x - x2
-	dy = y - y2
+function distance(x, y, xx, yy)
+	dx = x - xx
+	dy = y - yy
 	return math.sqrt(dx*dx + dy*dy)
 end
