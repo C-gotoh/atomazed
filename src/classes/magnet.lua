@@ -5,15 +5,14 @@ end
 function Magnet:addforce(aX,aY,bX,bY)
     local posA = a.get.pos
     local posB = b.get.pos
-    local abstand = sqrt((posA.getX - posB.getX)^2 + (posA.getY - posB.getY)^2)
+    local distance = sqrt((posA.getX - posB.getX)^2 + (posA.getY - posB.getY)^2)
 
-    if abstand < ((math.pi/2)*force)
-        laenge = math.cos (abstand * (1/force))
-        forcevectorx = laenge*(bX - aX)
-        forcevectory = laenge*(bY - aY)
+    if distance < ((math.pi/2)*force) then
+        length = math.cos (distance * (1/force))
+        forcevectorx = length*(bX - aX)
+        forcevectory = length*(bY - aY)
         newvectorx = aX.getVelocity + forcevectorx
         newvectory = aY.getVelocity + forcevectory
-
     end
 end
 
