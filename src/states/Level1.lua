@@ -86,7 +86,7 @@ function Level1:load()
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 1
+    self.minElectrons = 0
     self.endtimer = 0
 end
 
