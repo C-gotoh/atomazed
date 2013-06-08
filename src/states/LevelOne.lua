@@ -7,6 +7,7 @@ require("classes/electron")
 require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
+require("classes/portal")
 
 LevelOne = class("LevelOne", State)
 
@@ -24,6 +25,9 @@ function LevelOne:load()
     table.insert(self.all, self.proton)
     self.magnet = {}
     table.insert(self.all, self.magnet)
+    self.portal = {}
+    table.insert(self.all, self.portal)
+    self.positionQueue = {}
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -40,10 +44,10 @@ function LevelOne:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 100)
+    el.body:setLinearVelocity(0, 400)
     table.insert(self.el, el)
 
-    el = Electron(world, 750, 450)
+--[[el = Electron(world, 750, 450)
     el.body:setLinearVelocity(0, 0)
    table.insert(self.el, el)
 
@@ -56,18 +60,6 @@ function LevelOne:load()
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    for i = 1, 20, 1 do
-        proton = Proton(world, math.random(50, 1000), math.random(50, 550))
-        proton.body:setLinearVelocity(math.random(0, 400), math.random(0, 400))
-        table.insert(self.proton, proton)
-    end
-
-    for i = 1, 20, 1 do
-        el = Electron(world, math.random(50, 1000), math.random(50, 550))
-        el.body:setLinearVelocity(math.random(0, 400), math.random(0, 400))
-        table.insert(self.el, el)
-    end
-
     magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
@@ -78,11 +70,14 @@ function LevelOne:load()
     table.insert(self.magnet, magnet)
 
     magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
+    table.insert(self.magnet, magnet)]]
+
+    portal = Portal(world, 100, 300, 800, 200)
+    table.insert(self.portal, portal)
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 18
+    self.minElectrons = 50
 end
 
 function LevelOne:update(dt)
@@ -98,7 +93,7 @@ function LevelOne:update(dt)
 
     for index, el in pairs(self.el) do 
         fraction(el)
-end
+    end
     if love.mouse.isDown("l") then
     	down = true
     	self.force = self.force + dt
@@ -113,6 +108,11 @@ end
                 whatever:update(dt)
             end
         end
+    end
+    for index, value in pairs(self.positionQueue) do
+        value[1].body:setPosition(value[2], value[3])
+        value[1].body:setLinearVelocity(unpack(value[4]))
+        table.remove(self.positionQueue, index)
     end
 end
 
@@ -179,5 +179,12 @@ function LevelOne:beginContact(a, b, coll)
                 value.body:destroy()
             end
         end
+    end
+    if ((objecta.__name == "Electron") or (objecta.__name == "Proton")) and (objectb.__name == "Portal") then
+        local move = {objecta, objectb.xt, objectb.yt, {objecta.body:getLinearVelocity()}}
+        table.insert(self.positionQueue, move)
+    elseif ((objectb.__name == "Electron") or (objectb.__name == "Proton")) and (objecta.__name == "Portal") then
+        local move = {objectb, objecta.xt, objecta.yt, {objectb.body:getLinearVelocity()}}
+        table.insert(self.positionQueue, move)
     end
 end
