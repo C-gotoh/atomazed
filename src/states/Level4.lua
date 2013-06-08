@@ -10,19 +10,18 @@ require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
 
-require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
 
 
-Level1 = class("Level1", State)
+Level4 = class("Level4", State)
 
-function Level1:__init()
+function Level4:__init()
     self.force = 0
-    self.index = 1
+    self.index = 4
 end
 
-function Level1:load()
+function Level4:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -55,48 +54,32 @@ function Level1:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local proton = Proton(world, 580, 400)
-    proton.body:setLinearVelocity(0, 10)
+    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    local proton = Proton(world, 400, 100)
+    proton.body:setLinearVelocity(0, 100)
     table.insert(self.proton, proton)
 
-    local proton = Proton(world, 733, 434)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 769, 315)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 539, 256)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-
-    local proton = Proton(world, 583, 431)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-
-
-    local el = Electron(world, 213, 200)
-    proton.body:setLinearVelocity(0, 5)
+    local el = Electron(world, 100, 200)
+    el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
-    local el = Electron(world, 153, 100)
-    proton.body:setLinearVelocity(0, 5)
-    table.insert(self.el, el)
+    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
+    table.insert(self.walls, cwall)
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 0
+    self.minElectrons = -1
     self.endtimer = 0
 
     self.limitshock = 3
     self.limitmagnet1 = 0
     self.limitmagnet2 = 0
+
 end
 
-function Level1:update(dt)
+function Level4:update(dt)
     world:update(dt)
     if self.minElectrons >= #self.el then
         self.endtimer = self.endtimer + dt
@@ -173,7 +156,7 @@ function Level1:update(dt)
     end
 end
 
-function Level1:draw()
+function Level4:draw()
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
             if whatever.draw then
@@ -186,12 +169,12 @@ function Level1:draw()
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
-function Level1:restart()
+function Level4:restart()
     self:__init()
     self:load()
 end
 
-function Level1:keypressed(key, u)
+function Level4:keypressed(key, u)
     if key == "r" then
         self:restart()
     elseif key == "escape" then
@@ -201,7 +184,7 @@ function Level1:keypressed(key, u)
 end
 
 
-function Level1:mousepressed(x, y, button)
+function Level4:mousepressed(x, y, button)
 end
 
 --Collision function
@@ -209,40 +192,40 @@ function beginContact(a, b, coll)
     stack:current():beginContact(a, b, coll)
 end
 
-function Level1:beginContact(a, b, coll)
+function Level4:beginContact(a, b, coll)
     local objecta = a:getUserData()
     local objectb = b:getUserData()
 
     if (objecta.__name == "Proton") and (objectb.__name == "Electron") then
         for index, value in pairs(self.el) do 
             if value == objectb then
-                
+            	
                 table.remove(self.el, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
-                p1.system:start()
-                table.insert(self.particles, p1)
-                value.body:destroy()
+    			p1.system:start()
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
         for index, value in pairs(self.proton) do
             if value == objecta then
-                
+            	
                 table.remove(self.proton, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
-                p1.system:start()
-                table.insert(self.particles, p1)
-                value.body:destroy()
+    			p1.system:start()
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
     elseif (objecta.__name == "Electron") and (objectb.__name == "Proton") then
         for index, value in pairs(self.el) do 
             if value == objecta then
-                
+            	
                 table.remove(self.el, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
-                p1.system:start()
-                table.insert(self.particles, p1)
-                value.body:destroy()
+    			p1.system:start()
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
         for index, value in pairs(self.proton) do
@@ -250,9 +233,9 @@ function Level1:beginContact(a, b, coll)
 
                 table.remove(self.proton, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
-                p1.system:start()
-                table.insert(self.particles, p1)
-                value.body:destroy()
+    			p1.system:start()
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
     end

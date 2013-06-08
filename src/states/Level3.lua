@@ -10,19 +10,18 @@ require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
 
-require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
 
 
-Level1 = class("Level1", State)
+Level3 = class("Level3", State)
 
-function Level1:__init()
+function Level3:__init()
     self.force = 0
-    self.index = 1
+    self.index = 3
 end
 
-function Level1:load()
+function Level3:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -55,36 +54,19 @@ function Level1:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local proton = Proton(world, 580, 400)
-    proton.body:setLinearVelocity(0, 10)
+    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    local proton = Proton(world, 800, 500)
+    proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local proton = Proton(world, 733, 434)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 769, 315)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 539, 256)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-
-    local proton = Proton(world, 583, 431)
-    proton.body:setLinearVelocity(0, 10)
-    table.insert(self.proton, proton)
-
-
-
-    local el = Electron(world, 213, 200)
-    proton.body:setLinearVelocity(0, 5)
+    local el = Electron(world, 100, 50)
+    el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local el = Electron(world, 153, 100)
-    proton.body:setLinearVelocity(0, 5)
-    table.insert(self.el, el)
+    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 20)
+    table.insert(self.walls, cwall)
 
     self.darkness = 0 
     self.maxElectrons = 22
@@ -96,7 +78,7 @@ function Level1:load()
     self.limitmagnet2 = 0
 end
 
-function Level1:update(dt)
+function Level3:update(dt)
     world:update(dt)
     if self.minElectrons >= #self.el then
         self.endtimer = self.endtimer + dt
@@ -173,7 +155,7 @@ function Level1:update(dt)
     end
 end
 
-function Level1:draw()
+function Level3:draw()
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
             if whatever.draw then
@@ -186,12 +168,12 @@ function Level1:draw()
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
-function Level1:restart()
+function Level3:restart()
     self:__init()
     self:load()
 end
 
-function Level1:keypressed(key, u)
+function Level3:keypressed(key, u)
     if key == "r" then
         self:restart()
     elseif key == "escape" then
@@ -201,7 +183,7 @@ function Level1:keypressed(key, u)
 end
 
 
-function Level1:mousepressed(x, y, button)
+function Level3:mousepressed(x, y, button)
 end
 
 --Collision function
@@ -209,7 +191,7 @@ function beginContact(a, b, coll)
     stack:current():beginContact(a, b, coll)
 end
 
-function Level1:beginContact(a, b, coll)
+function Level3:beginContact(a, b, coll)
     local objecta = a:getUserData()
     local objectb = b:getUserData()
 

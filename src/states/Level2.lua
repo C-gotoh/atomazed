@@ -3,6 +3,7 @@ require("core/physicshelper")
 require("core/state")
 
 require("classes/wall")
+require("classes/coloredwall")
 require("classes/electron")
 require("classes/proton")
 require("classes/magnet")
@@ -54,20 +55,25 @@ function Level2:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    local proton = Proton(world, 400, 100)
-    proton.body:setLinearVelocity(0, 100)
+    local proton = Proton(world, 800, 500)
+    proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 800)
+    local el = Electron(world, 100, 50)
+    el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
+
+    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 20)
+    table.insert(self.walls, cwall)
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 50
+    self.minElectrons = 0
+    self.endtimer = 0
+
+    self.limitshock = 3
+    self.limitmagnet1 = 0
+    self.limitmagnet2 = 0
 end
 
 function Level2:update(dt)
@@ -190,33 +196,33 @@ function Level2:beginContact(a, b, coll)
     if (objecta.__name == "Proton") and (objectb.__name == "Electron") then
         for index, value in pairs(self.el) do 
             if value == objectb then
-            	
+                
                 table.remove(self.el, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
-    			p1.system:start()
-    			table.insert(self.particles, p1)
-    			value.body:destroy()
+                p1.system:start()
+                table.insert(self.particles, p1)
+                value.body:destroy()
             end
         end
         for index, value in pairs(self.proton) do
             if value == objecta then
-            	
+                
                 table.remove(self.proton, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
-    			p1.system:start()
-    			table.insert(self.particles, p1)
-    			value.body:destroy()
+                p1.system:start()
+                table.insert(self.particles, p1)
+                value.body:destroy()
             end
         end
     elseif (objecta.__name == "Electron") and (objectb.__name == "Proton") then
         for index, value in pairs(self.el) do 
             if value == objecta then
-            	
+                
                 table.remove(self.el, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
-    			p1.system:start()
-    			table.insert(self.particles, p1)
-    			value.body:destroy()
+                p1.system:start()
+                table.insert(self.particles, p1)
+                value.body:destroy()
             end
         end
         for index, value in pairs(self.proton) do
@@ -224,9 +230,9 @@ function Level2:beginContact(a, b, coll)
 
                 table.remove(self.proton, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
-    			p1.system:start()
-    			table.insert(self.particles, p1)
-    			value.body:destroy()
+                p1.system:start()
+                table.insert(self.particles, p1)
+                value.body:destroy()
             end
         end
     end
