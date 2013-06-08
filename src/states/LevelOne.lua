@@ -45,7 +45,7 @@ function LevelOne:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 400)
+    el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
 --[[el = Electron(world, 750, 450)
@@ -95,10 +95,13 @@ function LevelOne:update(dt)
     if love.mouse.isDown("l") then
         down = true
         self.force = self.force + dt
+        if self.force > 1 then
+            self.force = 1
+        end
     elseif down then
         Shock:fire(self.force)
         down = false
-        self.force = 1
+        self.force = 0
 
     end
     for index, table in pairs(self.all) do
