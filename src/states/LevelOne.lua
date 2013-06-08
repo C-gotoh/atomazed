@@ -8,7 +8,10 @@ require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
+
 require("classes/explosion")
+require("classes/shockeffect")
+
 
 LevelOne = class("LevelOne", State)
 
@@ -32,6 +35,10 @@ function LevelOne:load()
     self.explosions = {}
     table.insert(self.all, self.explosions)
 
+    self.shockeffect = {}
+    table.insert(self.all, self.shockeffect)
+    
+
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
     world = love.physics.newWorld(0, 0, true)
@@ -47,10 +54,10 @@ function LevelOne:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 400)
+    el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
---[[el = Electron(world, 750, 450)
+    el = Electron(world, 750, 450)
     el.body:setLinearVelocity(0, 0)
    table.insert(self.el, el)
 
@@ -73,10 +80,12 @@ function LevelOne:load()
     table.insert(self.magnet, magnet)
 
     magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)]]
+    table.insert(self.magnet, magnet)
 
-    portal = Portal(world, 100, 300, 800, 200)
-    table.insert(self.portal, portal)
+--    portal = Portal(world, 100, 300, 800, 200)
+--    table.insert(self.portal, portal)
+
+    
 
     self.darkness = 0 
     self.maxElectrons = 22
@@ -94,13 +103,39 @@ function LevelOne:update(dt)
         end
     end
 
+    for index, proton in pairs(self.proton) do
+        for indexzwo, protonzwo in pairs(self.proton) do
+            if proton ~= protonzwo then
+                proton:addForce(protonzwo)
+            end
+        end
+    end
+
+    for index, electron in pairs(self.el) do
+        for indexzwo, electronzwo in pairs(self.el) do
+            if electron ~= electronzwo then
+                electron:addForce(electronzwo)
+            end
+        end
+    end
+
+    for index, proton in pairs(self.proton) do
+        for index, electron in pairs(self.el) do
+            proton:addForce(electron)
+            electron:addForce(proton)
+        end
+    end
+
     if love.mouse.isDown("l") then
         down = true
         self.force = self.force + dt
+        if self.force > 1 then
+            self.force = 1
+        end
     elseif down then
         Shock:fire(self.force)
         down = false
-        self.force = 1
+        self.force = 0
 
     end
     for index, table in pairs(self.all) do
@@ -130,7 +165,7 @@ function LevelOne:draw()
         end
     end
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
-    love.graphics.setColor(0, 0, 0, 255*self.darkness)
+    love.graphics.setColor(0, 0, 0, 0*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
