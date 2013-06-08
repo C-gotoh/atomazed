@@ -4,9 +4,9 @@ function Shock:fire(force)
 	self.x = love.mouse.getX()
 	self.y = love.mouse.getY()
 	self.force = force
-	if self.force < 2 then
+	if self.force < 1.1 then
 		self.force = 10
-	elseif self.force > 2 then
+	elseif self.force > 1.7 then
 		self.force = 150
 	else
 		self.force = 70
