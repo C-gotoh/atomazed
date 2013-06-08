@@ -13,12 +13,20 @@ function MenuState:__init()
 end
 
 function MenuState:load()
+    world = love.physics.newWorld()
+    magnet = Magnet(world, love.graphics.getWidth() / 2 + 100, love.graphics.getHeight()/3, 20, 150, 12, "Electron")
+    magnet2 = Magnet(world, love.graphics.getWidth() / 2  -100, love.graphics.getHeight()/3, 20, 150, 12, "Electron")
+    self.el = Electron(world, 345, 150)
+    self.el.body:setLinearVelocity(0, 63)
     self.index = 1
     love.graphics.setFont(self.font)
 end
 
 
 function MenuState:update(dt)
+    magnet:addForce(self.el)
+    magnet2:addForce(self.el)
+    world:update(dt)
     self.runner = self.runner + dt/10
     if self.runner > 0.1 then
         self.runner = -0.1
@@ -54,6 +62,9 @@ function MenuState:draw()
         end
         love.graphics.print(text, x, 450, 0, scale-0.25, scale, self.font:getWidth(text)/2, self.font:getHeight(text)/2)
     end
+    self.el:draw()
+    magnet:draw()
+    magnet2:draw()
 end
 
 
