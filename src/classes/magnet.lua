@@ -10,6 +10,7 @@ function Magnet:__init(world, x, y, r, fr, force, typ)
     self.rangevisual = self.fr
     self.force = force
     self.type = typ
+    self.counter = 0
     self.color_fac = force / 12
 end
 
@@ -33,9 +34,11 @@ end
 function Magnet:update(dt)
     if self.rangevisual < self.radius then
         self.rangevisual = self.fr
+        self.counter = 0
     end
     
-    self.rangevisual = self.rangevisual - 1
+    self.rangevisual = self.rangevisual - (1+self.counter)
+    self.counter = self.counter + 0.03
 
 end
 
