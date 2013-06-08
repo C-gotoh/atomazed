@@ -1,7 +1,8 @@
-require("src/util/helper")
-require("src/util/gamestate")
+require("core/resources")
+require("core/helper")
+require("core/state")
 
-MenuState = class("MenuState", GameState)
+MenuState = class("MenuState", State)
 
 function MenuState:__init()
     self.menupoints = {"Credits","Play","Exit"}
@@ -11,12 +12,14 @@ function MenuState:__init()
     self.font = resources.fonts.big
 end
 
-function MenuState:start()
-	love.graphics.setFont(resources.fonts.big)
+function MenuState:load()
+    self.index = 1
+    love.graphics.setFont(self.font)
 end
 
+
 function MenuState:update(dt)
-	self.runner = self.runner + dt/10
+    self.runner = self.runner + dt/10
     if self.runner > 0.1 then
         self.runner = -0.1
     end
@@ -36,9 +39,9 @@ function MenuState:update(dt)
     end
 end
 
-function 
-	MenuState:draw()love.graphics.setColor(255, 255, 255)
-    --love.graphics.draw(resources.images.arena)
+
+function MenuState:draw()
+    love.graphics.setColor(255, 255, 255)
 
     for i = 1, 3, 1 do
         local scale = 1
@@ -52,6 +55,7 @@ function
         love.graphics.print(text, x, 450, 0, scale-0.25, scale, self.font:getWidth(text)/2, self.font:getHeight(text)/2)
     end
 end
+
 
 function MenuState:keypressed(key, u)
     if key == "right" or key ==  "d" then
@@ -68,9 +72,9 @@ function MenuState:keypressed(key, u)
         end
     elseif key == "return" then
         if self.index == 0 then
-
+            stack:push()
         elseif self.index == 1 then
-            stack:push(LevelOne)
+            stack:push(main)
         elseif self.index == 2 then
             love.event.push("quit")
         end

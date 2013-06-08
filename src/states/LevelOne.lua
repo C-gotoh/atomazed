@@ -7,6 +7,7 @@ LevelOne = class("LevelOne", Level)
 
 function LevelOne:__init()
 	self.__super.__init(self)
+	world = love.physics.newWorld(0, 0, true)
 end
 
 function LevelOne:start()
