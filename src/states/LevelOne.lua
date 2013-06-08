@@ -105,6 +105,7 @@ end
     elseif down then
     	Shock:fire(self.force)
     	down = false
+        self.force = 1
 
     end
     for index, table in pairs(self.all) do
