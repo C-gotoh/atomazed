@@ -32,8 +32,8 @@ function LevelOne:load()
     self.portal = {}
     table.insert(self.all, self.portal)
     self.positionQueue = {}
-    self.explosions = {}
-    table.insert(self.all, self.explosions)
+    self.particles = {}
+    table.insert(self.all, self.particles)
 
     self.shockeffect = {}
     table.insert(self.all, self.shockeffect)
@@ -196,33 +196,43 @@ function LevelOne:beginContact(a, b, coll)
     if (objecta.__name == "Proton") and (objectb.__name == "Electron") then
         for index, value in pairs(self.el) do 
             if value == objectb then
+            	
                 table.remove(self.el, index)
-                value.body:destroy()
-                local p1 = Explosion(33, 0, 255, 0, 0, 255)
+                local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
     			p1.system:start()
-    			table.insert(self.explosions, p1)
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
         for index, value in pairs(self.proton) do
             if value == objecta then
+            	
                 table.remove(self.proton, index)
-                value.body:destroy()
-                local p1 = Explosion(200, 200, 255, 0, 0, 255)
+                local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
     			p1.system:start()
-    			table.insert(self.explosions, p1)
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
     elseif (objecta.__name == "Electron") and (objectb.__name == "Proton") then
         for index, value in pairs(self.el) do 
             if value == objecta then
+            	
                 table.remove(self.el, index)
-                value.body:destroy()
+                local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
+    			p1.system:start()
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
         for index, value in pairs(self.proton) do
             if value == objectb then
+
                 table.remove(self.proton, index)
-                value.body:destroy()
+                local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
+    			p1.system:start()
+    			table.insert(self.particles, p1)
+    			value.body:destroy()
             end
         end
     end

@@ -19,5 +19,5 @@ function Explosion:update(dt)
 end
 
 function Explosion:draw()
-	self.system:draw(dt)
+	love.graphics.draw(self.system)
 end
