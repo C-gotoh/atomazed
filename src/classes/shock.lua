@@ -4,7 +4,11 @@ function Shock:fire(force)
 	self.x = love.mouse.getX()
 	self.y = love.mouse.getY()
 	self.force = force * 800
-	self.fireradius = 300
+	self.fireradius = 200
+
+	shockeffect = Shockeffect(world, self.x, self.y, self.force, self.fireradius)
+
+	table.insert(levelone.shockeffect, shockeffect)
 
 	for index, value in pairs(levelone.el) do
 		if (distance(value.body:getX(),value.body:getY(),self.x,self.y) < self.fireradius) then
@@ -26,10 +30,6 @@ function Shock:fire(force)
 				self.yforce = -800
 			end
 			value.body:applyForce(self.xforce, self.yforce)
-
-			shockeffect = Shockeffect(world, self.x, self.y)
-
-			table.insert(levelone.shockeffect, shockeffect)
 
 		end
 	end

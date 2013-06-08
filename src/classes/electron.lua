@@ -20,8 +20,8 @@ function Electron:addForce(object)
 
     if distance < self.fr then
         local vectorscale = (self.fr/distance) * (1/self.force)
-        if object.__name ~= self.type then
-            vectorscale = -vectorscale
+        if object.__name ~= self.__name then
+            vectorscale = vectorscale
         end
         forcevectorx = vectorscale*(posMx - posAx)
         forcevectory = vectorscale*(posMy - posAy)
