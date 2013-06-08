@@ -13,13 +13,14 @@ require("classes/explosion")
 require("classes/shockeffect")
 
 
-LevelOne = class("LevelOne", State)
+Level1 = class("Level1", State)
 
-function LevelOne:__init()
+function Level1:__init()
     self.force = 0
+    self.index = 1
 end
 
-function LevelOne:load()
+function Level1:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -44,7 +45,7 @@ function LevelOne:load()
     world = love.physics.newWorld(0, 0, true)
     world:setCallbacks(beginContact, endContact)
 
-    wall = Wall(world, 512, 0, 1024, 4, "static")
+    local wall = Wall(world, 512, 0, 1024, 4, "static")
     table.insert(self.walls, wall)
     wall = Wall(world, 512, 600, 1024, 4, "static")
     table.insert(self.walls, wall)
@@ -53,15 +54,15 @@ function LevelOne:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    el = Electron(world, 100, 200)
+    local el = Electron(world, 100, 200)
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
     el = Electron(world, 750, 450)
     el.body:setLinearVelocity(0, 0)
-   table.insert(self.el, el)
+    table.insert(self.el, el)
 
-    proton = Proton(world, 400, 100)
+    local proton = Proton(world, 400, 100)
     proton.body:setLinearVelocity(0, 100)
     table.insert(self.proton, proton)
 
@@ -70,30 +71,35 @@ function LevelOne:load()
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    magnet = Magnet(world, 250, 400, 20, 200, 30, "Electron")
+    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 800, 400, 20, 200, 20, "Proton")
+    magnet = Magnet(world, 800, 400, 20, 200, 12, "Proton")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 350, 200, 20, 200, 40, "Proton")
+    magnet = Magnet(world, 350, 200, 20, 200, 12, "Proton")
     table.insert(self.magnet, magnet)
 
     magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
---    portal = Portal(world, 100, 300, 800, 200)
---    table.insert(self.portal, portal)
+    portal = Portal(world, 100, 300, 800, 200)
+    table.insert(self.portal, portal)
 
     
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 50
+    self.minElectrons = 1
 end
 
-function LevelOne:update(dt)
+function Level1:update(dt)
     world:update(dt)
+    if self.minElectrons >= #self.el then
+        local canvas = love.graphics.newScreenshot()
+        screenshot = love.graphics.newImage(canvas)
+        stack:push(gameover)
+    end
     for index, magnet in pairs(self.magnet) do
         for index2, el in pairs(self.el) do
             magnet:addForce(el)
@@ -156,7 +162,7 @@ function LevelOne:update(dt)
     end
 end
 
-function LevelOne:draw()
+function Level1:draw()
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
             if whatever.draw then
@@ -169,27 +175,30 @@ function LevelOne:draw()
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
-function LevelOne:restart()
+function Level1:restart()
     self:__init()
     self:load()
 end
 
-function LevelOne:keypressed(key, u)
+function Level1:keypressed(key, u)
     if key == "r" then
         self:restart()
+    elseif key == "escape" then
+        stack:pop()
+        stack:current():load()
     end
 end
 
 
-function LevelOne:mousepressed(x, y, button)
+function Level1:mousepressed(x, y, button)
 end
 
 --Collision function
 function beginContact(a, b, coll)
-    levelone:beginContact(a, b, coll)
+    level1:beginContact(a, b, coll)
 end
 
-function LevelOne:beginContact(a, b, coll)
+function Level1:beginContact(a, b, coll)
     local objecta = a:getUserData()
     local objectb = b:getUserData()
 

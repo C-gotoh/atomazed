@@ -3,7 +3,7 @@ require("core/helper")
 GameOverState = class("GameOverState", State)
 
 function GameOverState:__init()
-    self.menulist = {"Main Menu", "Restart" , "Exit"}
+    self.menulist = {"Main Menu", "Next Level" , "Restart"}
 end
 
 function GameOverState:load()
@@ -34,12 +34,15 @@ function GameOverState:update(dt)
         if self.index == 1 then
             stack:pop()
             stack:pop()
-            main:restart()
+            stack:current():load()
         elseif self.index == 2 then
-            main:restart()
             stack:pop()
+            local int = stack:current().index
+            stack:pop()
+            stack:push(levels[int+1])
         elseif self.index == 3 then
-            love.event.quit()
+            stack:pop()
+            stack:current():restart()
         end
     end
 end
@@ -50,7 +53,7 @@ function GameOverState:draw()
 
     love.graphics.setColor(255, 255, 255, 255*self.runner)
     love.graphics.setFont(resources.fonts.big)
-    love.graphics.print("GAME OVER", 370, 200)
+    love.graphics.print("GAME WON", 370, 200)
     for i, v in pairs(self.menulist) do
         local scroll = i * 200 + 50
         if i == self.index then

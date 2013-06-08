@@ -3,8 +3,10 @@ require("core/resources")
 require("core/stackhelper")
 require("core/helper")
 
-require("states/LevelOne")
+require("states/Level1")
 require("states/MenuState")
+require("states/GameOverState")
+require("states/CreditsState")
 
 
 function love.load()
@@ -26,9 +28,13 @@ function love.load()
     love.graphics.setMode(1024, 600, false, true, 0) -- Fensteroberfläche
 
     stack = StackHelper()
-    levelone = LevelOne()
     menu = MenuState()
-    
+    gameover = GameOverState()
+    credit = CreditsState()
+    levels = {}
+    level1 = Level1()
+    levels[1] = level1
+
     stack:push(menu)
 end
 
