@@ -39,10 +39,10 @@ function LevelOne:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 400)
+    el.body:setLinearVelocity(300, 400)
     table.insert(self.el, el)
 
-    el = Electron(world, 100, 100)
+    --[[el = Electron(world, 100, 100)
     el.body:setLinearVelocity(0, 400)
     table.insert(self.el, el)
 
@@ -58,9 +58,9 @@ function LevelOne:load()
     magnet = Magnet(world, 700, 200, 20, 200, 10)
     table.insert(self.magnet, magnet)
 
-    proton = Proton(world, 400, 300)
+    proton = Proton(world, 400, 100)
     proton.body:setLinearVelocity(0, 300)
-    table.insert(self.proton, proton)
+    table.insert(self.proton, proton)  --]]
 end
 
 function LevelOne:update(dt)
@@ -69,6 +69,10 @@ function LevelOne:update(dt)
         for index2, el in pairs(self.el) do
             magnet:addForce(el)
         end
+    end
+    for index, el in pairs(self.el) do 
+        fraction(el)
+        print(el.body:getLinearVelocity())
     end
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
