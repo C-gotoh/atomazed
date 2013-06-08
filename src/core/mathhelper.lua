@@ -10,24 +10,21 @@ function fraction(el)
 	y = math.floor(y)
 		if (x == 0) and (y == 0) then
 			el.body:setLinearVelocity(0,0)
-		end
-		if x == 0 then
+			
+		elseif x == 0 then
 			if y > 0 then
 				el.body:setLinearVelocity(0,y-1)
 			else
 				el.body:setLinearVelocity(0,y+1)
 			end
 
-		end
-		if y == 0 then
+		elseif y == 0 then
 			if x > 0 then
 				el.body:setLinearVelocity(x-1,0)
 			else
 				el.body:setLinearVelocity(x+1,0)
 			end
-		end --]]
-		
-    	if (x > 0) then
+		elseif (x > 0) then
     		if y > 0 then
     			el.body:setLinearVelocity((x-1),(y-1))
     		else
