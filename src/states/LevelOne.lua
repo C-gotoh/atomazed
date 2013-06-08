@@ -7,6 +7,7 @@ require("classes/electron")
 require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
+require("classes/biribiri")
 
 LevelOne = class("LevelOne", State)
 
@@ -24,6 +25,8 @@ function LevelOne:load()
     table.insert(self.all, self.proton)
     self.magnet = {}
     table.insert(self.all, self.magnet)
+    self.biribiri = {}
+    table.insert(self.all, self.biribiri)
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -83,6 +86,10 @@ function LevelOne:load()
     self.darkness = 0 
     self.maxElectrons = 22
     self.minElectrons = 18
+
+    biribiri = Biribiri(world, 400, 400)
+    biribiri.body:setLinearVelocity(0, 0)
+    table.insert(self.biribiri, biribiri)
 end
 
 function LevelOne:update(dt)
