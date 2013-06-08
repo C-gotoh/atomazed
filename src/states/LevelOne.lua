@@ -45,7 +45,7 @@ function LevelOne:load()
 
     el = Electron(world, 750, 450)
     el.body:setLinearVelocity(0, 0)
-    table.insert(self.el, el)
+   table.insert(self.el, el)
 
     proton = Proton(world, 400, 100)
     proton.body:setLinearVelocity(0, 100)
@@ -95,6 +95,11 @@ function LevelOne:update(dt)
             magnet:addForce(proton)
         end
     end
+
+    for index, el in pairs(self.el) do 
+        fraction(el)
+        print(el.body:getLinearVelocity())
+end
     if love.mouse.isDown("l") then
     	down = true
     	self.force = self.force + dt
@@ -102,6 +107,7 @@ function LevelOne:update(dt)
     elseif down then
     	Shock:fire(self.force)
     	down = false
+
     end
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
