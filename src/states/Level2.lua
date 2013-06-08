@@ -13,14 +13,14 @@ require("classes/explosion")
 require("classes/shockeffect")
 
 
-Level = class("Level", State)
+Level2 = class("Level2", State)
 
-function Level:__init()
+function Level2:__init()
     self.force = 0
-    self.index = 0
+    self.index = 2
 end
 
-function Level:load()
+function Level2:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -60,7 +60,6 @@ function Level:load()
     proton.body:setLinearVelocity(0, 100)
     table.insert(self.proton, proton)
 
-
     local el = Electron(world, 100, 200)
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
@@ -70,14 +69,14 @@ function Level:load()
     self.minElectrons = 50
 end
 
-function Level:update(dt)
+function Level2:update(dt)
     world:update(dt)
     if self.minElectrons <= #self.el then
+        local canvas = love.graphics.newScreenshot()
+        screenshot = love.graphics.newImage(canvas)
         local save = {}
         save.saves = self.index+1
         success = love.filesystem.write( "save.lua", table.show(save, "saved"))
-        local canvas = love.graphics.newScreenshot()
-        screenshot = love.graphics.newImage(canvas)
         stack:push(gameover)
     end
     for index, magnet in pairs(self.magnet) do
@@ -142,7 +141,7 @@ function Level:update(dt)
     end
 end
 
-function Level:draw()
+function Level2:draw()
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
             if whatever.draw then
@@ -155,12 +154,12 @@ function Level:draw()
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
-function Level:restart()
+function Level2:restart()
     self:__init()
     self:load()
 end
 
-function Level:keypressed(key, u)
+function Level2:keypressed(key, u)
     if key == "r" then
         self:restart()
     elseif key == "escape" then
@@ -170,7 +169,7 @@ function Level:keypressed(key, u)
 end
 
 
-function Level:mousepressed(x, y, button)
+function Level2:mousepressed(x, y, button)
 end
 
 --Collision function
@@ -178,7 +177,7 @@ function beginContact(a, b, coll)
     stack:current():beginContact(a, b, coll)
 end
 
-function Level:beginContact(a, b, coll)
+function Level2:beginContact(a, b, coll)
     local objecta = a:getUserData()
     local objectb = b:getUserData()
 

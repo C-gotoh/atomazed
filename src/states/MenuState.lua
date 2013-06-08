@@ -5,7 +5,7 @@ require("core/state")
 MenuState = class("MenuState", State)
 
 function MenuState:__init()
-    self.menupoints = {"Credits","Play","Exit"}
+    self.menupoints = {"Credits","New Game", "Resume","Exit"}
     self.index = 1
     self.runner = 0
     self.runner2 = 0
@@ -51,10 +51,10 @@ end
 function MenuState:draw()
     love.graphics.setColor(255, 255, 255)
 
-    for i = 1, 3, 1 do
+    for i = 1, 4, 1 do
         local scale = 1
         local text = self.menupoints[i]
-        local x = i*(love.graphics.getWidth()/4)
+        local x = i*(love.graphics.getWidth()/4.5)
         if (i-1) == self.index then
             scale = self.wobble
         else
@@ -70,23 +70,30 @@ end
 
 function MenuState:keypressed(key, u)
     if key == "right" or key ==  "d" then
-        if self.index < 2 then
+        if self.index < 3 then
             self.index = self.index + 1
-        elseif self.index == 2 then
+        elseif self.index == 3 then
             self.index = 0
         end
     elseif key == "left" or key == "a" then
         if self.index > 0 then
             self.index = self.index -1
         elseif self.index == 0 then
-            self.index = 2
+            self.index = 3
         end
     elseif key == "return" then
         if self.index == 0 then
             stack:push(credit)
         elseif self.index == 1 then
             stack:push(levels[1])
-        elseif self.index == 2 then
+        elseif self.index == 2 then 
+            if love.filesystem.exists("save.lua") then
+            chunk = love.filesystem.load( "save.lua" )
+            chunk()
+            stack:push(levels[saved.saves])
+            else
+            end
+        elseif self.index == 3 then
             love.event.push("quit")
         end
     end

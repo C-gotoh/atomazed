@@ -8,9 +8,9 @@ function Shock:fire(force)
 
 	shockeffect = Shockeffect(world, self.x, self.y, self.force, self.fireradius)
 
-	table.insert(level1.shockeffect, shockeffect)
+	table.insert(stack:current().shockeffect, shockeffect)
 
-	for index, value in pairs(level1.el) do
+	for index, value in pairs(stack:current().el) do
 		if (distance(value.body:getX(),value.body:getY(),self.x,self.y) < self.fireradius) then
 			self.distancescale = (self.fireradius/(distance(value.body:getX(), value.body:getY(), self.x, self.y)))
 
@@ -33,7 +33,7 @@ function Shock:fire(force)
 
 		end
 	end
-	for index, value in pairs(level1.proton) do
+	for index, value in pairs(stack:current().proton) do
 		if (distance(value.body:getX(),value.body:getY(),self.x,self.y) < self.fireradius) then
 			self.distancescale = (self.fireradius/(distance(value.body:getX(), value.body:getY(), self.x, self.y)))
 
