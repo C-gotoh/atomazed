@@ -7,33 +7,45 @@ require("classes/electron")
 require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
-
-require("classes/biribiri")
 require("classes/portal")
 
 LevelOne = class("LevelOne", State)
 
 function LevelOne:__init()
-	self.force = 0
+    self.force = 0
 end
 
 function LevelOne:load()
     self.all = {}
-	self.walls = {}
+    self.walls = {}
     table.insert(self.all, self.walls)
-	self.el = {}
+    self.el = {}
     table.insert(self.all, self.el)
     self.proton = {}
     table.insert(self.all, self.proton)
     self.magnet = {}
     table.insert(self.all, self.magnet)
-
-    self.biribiri = {}
-    table.insert(self.all, self.biribiri)
-
     self.portal = {}
     table.insert(self.all, self.portal)
     self.positionQueue = {}
+
+    love.graphics.setFont(resources.fonts.default)
+    love.physics.setMeter(64)
+    world = love.physics.newWorld(0, 0, true)
+    world:setCallbacks(beginContact, endContact)
+
+    wall = Wall(world, 512, 0, 1024, 4, "static")
+    table.insert(self.walls, wall)
+    wall = Wall(world, 512, 600, 1024, 4, "static")
+    table.insert(self.walls, wall)
+    wall = Wall(world, 1024, 300, 4, 600, "static")
+    table.insert(self.walls, wall)
+    wall = Wall(world, 0, 300, 4, 600, "static")
+    table.insert(self.walls, wall)
+
+    el = Electron(world, 100, 200)
+    el.body:setLinearVelocity(0, 400)
+    table.insert(self.el, el)
 
 --[[el = Electron(world, 750, 450)
     el.body:setLinearVelocity(0, 0)
@@ -65,15 +77,7 @@ function LevelOne:load()
 
     self.darkness = 0 
     self.maxElectrons = 22
-
-    self.minElectrons = 18
-
-    biribiri = Biribiri(world, 400, 400)
-    biribiri.body:setLinearVelocity(0, 0)
-    table.insert(self.biribiri, biribiri)
-
     self.minElectrons = 50
-
 end
 
 function LevelOne:update(dt)
@@ -91,11 +95,11 @@ function LevelOne:update(dt)
         fraction(el)
     end
     if love.mouse.isDown("l") then
-    	down = true
-    	self.force = self.force + dt
+        down = true
+        self.force = self.force + dt
     elseif down then
-    	Shock:fire(self.force)
-    	down = false
+        Shock:fire(self.force)
+        down = false
         self.force = 1
 
     end
