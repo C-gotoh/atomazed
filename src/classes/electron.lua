@@ -5,12 +5,14 @@ function Electron:__init(world, x, y)
 	self.shape = love.physics.newCircleShape(10)
 	self.fixture = love.physics.newFixture(self.body, self.shape)
 	self.fixture:setUserData(self)
-	self.fixture:setRestitution(0.5)  
+	self.fixture:setRestitution(0.5)
+	self.tail = Tail(x, y, 0, 0, 255, 120)
 	self.x = x
 	self.y = y
 	self.wobble = 1
 	self.fr = 100
 	self.force = 15
+	self.tail.system:start()
 end
 
 function Electron:addForce(object)
@@ -31,6 +33,8 @@ function Electron:addForce(object)
 end
 
 function Electron:update(dt)
+	self.tail.system:setPosition(self.body:getX(), self.body:getY())
+	self.tail:update(dt)
 	if self.flag == true then
 		self.wobble = self.wobble + dt*0.2
 		if self.wobble > 1 then
@@ -45,6 +49,7 @@ function Electron:update(dt)
 end
 
 function Electron:draw()
+	self.tail:draw()
 	love.graphics.setColor(56, 222, 255, 80)
 	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15*self.wobble)
 	love.graphics.setColor(56, 222, 255, 120)

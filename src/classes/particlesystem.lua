@@ -10,3 +10,11 @@ function ParticleSystem:__init(x, y, r, g, b, a)
 	self.system:setSizes(10, 10)
 	self.system:setParticleLife(10, 10)
 end
+
+function Explosion:update(dt)
+	self.system:update(dt)
+end
+
+function Explosion:draw()
+	love.graphics.draw(self.system)
+end
