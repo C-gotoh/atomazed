@@ -14,14 +14,14 @@ require("classes/explosion")
 require("classes/shockeffect")
 
 
-Level = class("Level", State)
+Level4 = class("Level4", State)
 
-function Level:__init()
+function Level4:__init()
     self.force = 0
-    self.index = 0
+    self.index = 4
 end
 
-function Level:load()
+function Level4:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -55,7 +55,7 @@ function Level:load()
     table.insert(self.walls, wall)
 
     local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magne`t)
+    table.insert(self.magnet, magnet)
 
     local proton = Proton(world, 400, 100)
     proton.body:setLinearVelocity(0, 100)
@@ -79,7 +79,7 @@ function Level:load()
 
 end
 
-function Level:update(dt)
+function Level4:update(dt)
     world:update(dt)
     if self.minElectrons >= #self.el then
         self.endtimer = self.endtimer + dt
@@ -156,7 +156,7 @@ function Level:update(dt)
     end
 end
 
-function Level:draw()
+function Level4:draw()
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
             if whatever.draw then
@@ -169,12 +169,12 @@ function Level:draw()
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
 
-function Level:restart()
+function Level4:restart()
     self:__init()
     self:load()
 end
 
-function Level:keypressed(key, u)
+function Level4:keypressed(key, u)
     if key == "r" then
         self:restart()
     elseif key == "escape" then
@@ -184,7 +184,7 @@ function Level:keypressed(key, u)
 end
 
 
-function Level:mousepressed(x, y, button)
+function Level4:mousepressed(x, y, button)
 end
 
 --Collision function
@@ -192,7 +192,7 @@ function beginContact(a, b, coll)
     stack:current():beginContact(a, b, coll)
 end
 
-function Level:beginContact(a, b, coll)
+function Level4:beginContact(a, b, coll)
     local objecta = a:getUserData()
     local objectb = b:getUserData()
 
