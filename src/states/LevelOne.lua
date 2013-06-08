@@ -105,7 +105,7 @@ function LevelOne:update(dt)
             if whatever.update then
                 whatever:update(dt)
                 if (whatever.__name == "Electron") or (whatever.__name == "Proton") then
-                    fraction(whatever)
+                    fraction(whatever, 0.2)
                     limitSystem(whatever, 400)
                 end
             end
