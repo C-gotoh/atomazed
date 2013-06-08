@@ -73,12 +73,17 @@ end
 function Level:update(dt)
     world:update(dt)
     if self.minElectrons >= #self.el then
-        local save = {}
-        save.saves = self.index+1
-        success = love.filesystem.write( "save.lua", table.show(save, "saved"))
-        local canvas = love.graphics.newScreenshot()
-        screenshot = love.graphics.newImage(canvas)
-        stack:push(gameover)
+        self.endtimer = self.endtimer + dt
+        if self.endtimer > 1.5 then 
+            local canvas = love.graphics.newScreenshot()
+            screenshot = love.graphics.newImage(canvas)
+            local save = {}
+            save.saves = self.index+1
+            success = love.filesystem.write( "save.lua", table.show(save, "saved"))
+            local canvas = love.graphics.newScreenshot()
+            screenshot = love.graphics.newImage(canvas)
+            stack:push(gameover)
+        end
     end
     for index, magnet in pairs(self.magnet) do
         for index2, el in pairs(self.el) do
