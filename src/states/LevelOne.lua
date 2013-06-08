@@ -8,6 +8,7 @@ require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
+require("classes/biribiri")
 
 LevelOne = class("LevelOne", State)
 
