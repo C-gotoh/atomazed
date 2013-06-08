@@ -17,7 +17,7 @@ LevelOne = class("LevelOne", State)
 
 function LevelOne:__init()
     self.force = 0
-    self.index = 1
+    self.index = 0
 end
 
 function LevelOne:load()
@@ -35,7 +35,6 @@ function LevelOne:load()
     self.positionQueue = {}
     self.particles = {}
     table.insert(self.all, self.particles)
-
     self.shockeffect = {}
     table.insert(self.all, self.shockeffect)
     
@@ -54,48 +53,25 @@ function LevelOne:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 800)
-    table.insert(self.el, el)
-
-    el = Electron(world, 750, 450)
-    el.body:setLinearVelocity(0, 0)
-    table.insert(self.el, el)
+    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
 
     local proton = Proton(world, 400, 100)
     proton.body:setLinearVelocity(0, 100)
     table.insert(self.proton, proton)
 
-
-    proton = Proton(world, 300, 450)
-    proton.body:setLinearVelocity(0, 0)
-    table.insert(self.proton, proton)
-
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    magnet = Magnet(world, 800, 400, 20, 200, 12, "Proton")
-    table.insert(self.magnet, magnet)
-
-    magnet = Magnet(world, 350, 200, 20, 200, 12, "Proton")
-    table.insert(self.magnet, magnet)
-
-    magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    portal = Portal(world, 100, 300, 800, 200)
-    table.insert(self.portal, portal)
-
-    
+    local el = Electron(world, 100, 200)
+    el.body:setLinearVelocity(0, 800)
+    table.insert(self.el, el)
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 1
+    self.minElectrons = 50
 end
 
 function LevelOne:update(dt)
     world:update(dt)
-    if self.minElectrons >= #self.el then
+    if minElectrons <= #self.el then
         local canvas = love.graphics.newScreenshot()
         screenshot = love.graphics.newImage(canvas)
         stack:push(gameover)

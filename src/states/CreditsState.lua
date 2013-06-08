@@ -6,10 +6,10 @@ CreditsState = class("CreditsState", State)
 function CreditsState:__init()
     self.bg = resources.images.arena
     self.names = {
-                    {"Code:", "Arne Beer", "Rafael Epplée"}, 
-                    {"Graphics:", "Rafael Epplée"}, 
-                    {"Sounds:", "Toenjes Peters"},
-                    {"Idea:", "Paul Bienkowski", "Sven-Hendrik Haase", "Hans-Ole Hatzel", "Toenjes Peters", "Rafael Epplée", "Arne Beer"}
+                    {"Code:", "Arne Beer", "Hans-Ole", "Julian Tobergte"}, 
+                    {"Graphics:", "Arne Beer", "Hans-Ole", "Julian Tobergte"}, 
+                    {"Sounds:", "Gibts net"},
+                    {"Idea:", "Arne Beer", "Hans-Ole", "Julian Tobergte"}
                 }
 end
 
