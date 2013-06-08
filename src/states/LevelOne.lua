@@ -30,7 +30,7 @@ function LevelOne:load()
     table.insert(self.all, self.portal)
     self.positionQueue = {}
     table.insert(self.all, self.shockeffect)
-    self.positionQueue = {}
+    self.shockeffect = {}
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -73,12 +73,12 @@ function LevelOne:load()
     table.insert(self.magnet, magnet)
 
     magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)]]
+    table.insert(self.magnet, magnet)
 
     portal = Portal(world, 100, 300, 800, 200)
     table.insert(self.portal, portal)
 
-    shockeffect = Shockeffect(world, 200, 200, 300, 300)
+    shockeffect = Shockeffect(world, 200, 200)
     table.insert(self.shockeffect, shockeffect)
 
     self.darkness = 0 
