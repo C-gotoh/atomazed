@@ -5,9 +5,10 @@ function Magnet:__init(world, x, y, r, fr, force, typ)
     self.shape = love.physics.newCircleShape(r)
     self.fixture = love.physics.newFixture(self.body, self.shape)
     self.fixture:setUserData(self)
-    self.fr = fr
+    self.fr = fr -- range
     self.force = force
     self.type = typ
+    self.color_fac = force / 12
 end
 
 function Magnet:addForce(object)
@@ -33,30 +34,30 @@ end
 
 function Magnet:draw()
     if self.type == "Electron" then
-        love.graphics.setColor(255, 37, 0, 255)
+        love.graphics.setColor(255, 37, 0,  self.color_fac * 255)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 25)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(255, 255, 255, self.color_fac * 255)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
-        love.graphics.setColor(255, 37, 0, 200)
+        love.graphics.setColor(255, 37, 0, self.color_fac * 200)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(255, 255, 255, self.color_fac * 255)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15)
-        love.graphics.setColor(255, 37, 0, 120)
+        love.graphics.setColor(255, 37, 0, self.color_fac * 120)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15)
-        love.graphics.setColor(255, 37, 0, 80)
+        love.graphics.setColor(255, 37, 0, self.color_fac * 80)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 8)
     elseif self.type == "Proton" then
-        love.graphics.setColor(56, 222, 255, 255)
+        love.graphics.setColor(56 + (self.color_fac * 0.1), 222 + (self.color_fac * 0.1), 255 + (self.color_fac * 0.1), self.color_fac * 255)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 25)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(255, 255, 255, self.color_fac * 255)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
-        love.graphics.setColor(56, 222, 255, 200)
+        love.graphics.setColor(56, 222, 255, self.color_fac * 200)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(255, 255, 255, self.color_fac * 255)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15)
-        love.graphics.setColor(56, 222, 255, 12)
+        love.graphics.setColor(56, 222, 255, self.color_fac * 12)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15)
-        love.graphics.setColor(56, 222, 255, 80)
+        love.graphics.setColor(56, 222, 255, self.color_fac * 80)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 8)
     end 
 end
