@@ -81,13 +81,9 @@ function Level4:load()
     table.insert(self.el, el)
 
 
-
-    --local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
-    --table.insert(self.walls, cwall)
-
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = -1
+    self.minElectrons = 0
     self.endtimer = 0
 
     self.limitshock = 4

@@ -56,7 +56,7 @@ function Level:load()
     table.insert(self.walls, wall)
 
     local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magne`t)
+    table.insert(self.magnet, magnet)
 
     local proton = Proton(world, 400, 100)
     proton.body:setLinearVelocity(0, 100)
