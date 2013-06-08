@@ -91,9 +91,6 @@ function LevelOne:update(dt)
         end
     end
 
-    for index, el in pairs(self.el) do 
-        fraction(el)
-    end
     if love.mouse.isDown("l") then
         down = true
         self.force = self.force + dt
@@ -107,6 +104,10 @@ function LevelOne:update(dt)
         for index2, whatever in pairs(table) do
             if whatever.update then
                 whatever:update(dt)
+                if (whatever.__name == "Electron") or (whatever.__name == "Proton") then
+                    fraction(whatever)
+                    limitSystem(whatever, 400)
+                end
             end
         end
     end

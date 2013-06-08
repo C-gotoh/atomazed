@@ -22,8 +22,7 @@ function Shock:fire(force)
 				self.yforce = 400
 			end
 			value.body:applyForce(self.xforce, self.yforce)
-
-
+			limitSystem(value, 400)
 		end
 	end
 end
