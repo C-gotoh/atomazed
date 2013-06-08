@@ -35,7 +35,6 @@ function Level1:load()
     self.positionQueue = {}
     self.particles = {}
     table.insert(self.all, self.particles)
-
     self.shockeffect = {}
     table.insert(self.all, self.shockeffect)
     
