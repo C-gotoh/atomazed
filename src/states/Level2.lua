@@ -9,6 +9,7 @@ require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
 
+require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
 

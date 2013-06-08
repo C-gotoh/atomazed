@@ -26,6 +26,8 @@ end
 function MenuState:update(dt)
     magnet:addForce(self.el)
     magnet2:addForce(self.el)
+    magnet:update()
+    magnet2:update()
     world:update(dt)
     self.runner = self.runner + dt/10
     if self.runner > 0.1 then
