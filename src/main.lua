@@ -1,29 +1,27 @@
-require("intro")
 require("util/resources")
 require("util/gamestack")
+
+require("states/MenuState")
+require("states/LevelOne")
 
 resources = Resources("data/")
 
 function reset()
     -- start game
-    intro = Intro()
     stack = GameStack()
-    stack:push(intro)
+    main = MenuState()
+    stack:push(main)
 end
 
 function love.load()
-    math.randomseed(os.time())
-
-    -- load images
-    -- resources:addImage("logo", "logo.png")
-
-    -- load fonts
     resources:addFont("normal", "DejaVuSans.ttf", 20)
 
-    -- load music
-    -- resources:addMusic("background", "background.mp3")
-
     resources:load()
+  
+
+    love.graphics.setMode(1024, 768, false, true, 0)
+  
+    levelone = LevelOne()
 
     reset()
 end
@@ -34,9 +32,6 @@ end
 
 function love.draw()
     stack:draw()
-
-    -- love.graphics.setFont(resources.fonts.tiny)
-    -- love.graphics.print("FPS: " .. love.timer.getFPS(), 5, 5)
 end
 
 function love.keypressed(k, u)
