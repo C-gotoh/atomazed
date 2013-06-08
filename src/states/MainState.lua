@@ -13,6 +13,7 @@ end
 
 function MainState:load()
 	self.walls = {}
+	self.el = {}
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
     world = love.physics.newWorld(0, 9.81*64, true)
@@ -28,6 +29,7 @@ function MainState:load()
     table.insert(self.walls, wall)
 
     el = Electron(world, 200, 200)
+    table.insert(self.el, el)
 end
 
 function MainState:update(dt)
@@ -36,9 +38,11 @@ end
 
 function MainState:draw()
 	for index, wall in pairs(self.walls) do
-		love.graphics.polygon("fill", wall.body:getWorldPoints(wall.shape:getPoints()))
+		wall:draw()
 	end
-    el:draw()
+	for index, el in pairs(self.el) do
+		el:draw()
+	end
 end
 
 function MainState:restart()

@@ -6,3 +6,7 @@ function Wall:__init(world, x, y, l, h, type)
     self.fixture = love.physics.newFixture(self.body, self.shape)
    	self.fixture:setUserData(self)
 end
+
+function Wall:draw()
+	love.graphics.polygon("fill", self.body:getWorldPoints(self.shape:getPoints()))
+end
