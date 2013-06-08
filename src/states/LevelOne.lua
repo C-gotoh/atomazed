@@ -4,6 +4,7 @@ require("core/state")
 
 require("classes/wall")
 require("classes/electron")
+require("classes/proton")
 require("classes/magnet")
 
 LevelOne = class("LevelOne", State)
@@ -13,9 +14,15 @@ function LevelOne:__init()
 end
 
 function LevelOne:load()
+    self.all = {}
 	self.walls = {}
+    table.insert(self.all, self.walls)
 	self.el = {}
+    table.insert(self.all, self.el)
+    self.proton = {}
+    table.insert(self.all, self.proton)
     self.magnet = {}
+    table.insert(self.all, self.magnet)
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -40,6 +47,9 @@ function LevelOne:load()
     magnet = Magnet(world, 250, 600, 20, 200, 2)
     table.insert(self.magnet, magnet)
 
+    proton = Proton(world, 400, 700)
+    proton.body:setLinearVelocity(0, 300)
+    table.insert(self.proton, proton)
 end
 
 function LevelOne:update(dt)
@@ -49,17 +59,22 @@ function LevelOne:update(dt)
             magnet:addForce(el)
         end
     end
+    for index, table in pairs(self.all) do
+        for index2, whatever in pairs(table) do
+            if whatever.update then
+                whatever:update(dt)
+            end
+        end
+    end
 end
 
 function LevelOne:draw()
-	for index, wall in pairs(self.walls) do
-		wall:draw()
-	end
-	for index, el in pairs(self.el) do
-		el:draw()
-	end
-    for index, magnet in pairs(self.magnet) do
-        magnet:draw()
+    for index, table in pairs(self.all) do
+        for index2, whatever in pairs(table) do
+            if whatever.draw then
+                whatever:draw()
+            end
+        end
     end
 end
 
