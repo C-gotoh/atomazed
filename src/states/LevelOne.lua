@@ -4,6 +4,7 @@ require("core/state")
 
 require("classes/wall")
 require("classes/electron")
+require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
 
@@ -14,9 +15,15 @@ function LevelOne:__init()
 end
 
 function LevelOne:load()
+    self.all = {}
 	self.walls = {}
+    table.insert(self.all, self.walls)
 	self.el = {}
+    table.insert(self.all, self.el)
+    self.proton = {}
+    table.insert(self.all, self.proton)
     self.magnet = {}
+    table.insert(self.all, self.magnet)
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -25,25 +32,36 @@ function LevelOne:load()
 
     wall = Wall(world, 512, 0, 1024, 4, "static")
     table.insert(self.walls, wall)
-    wall = Wall(world, 512, 768, 1024, 4, "static")
+    wall = Wall(world, 512, 600, 1024, 4, "static")
     table.insert(self.walls, wall)
-    wall = Wall(world, 1024, 384, 4, 768, "static")
+    wall = Wall(world, 1024, 300, 4, 600, "static")
     table.insert(self.walls, wall)
-    wall = Wall(world, 0, 384, 4, 768, "static")
+    wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 800)
+    el.body:setLinearVelocity(0, 400)
     table.insert(self.el, el)
 
-    magnet = Magnet(world, 250, 600, 20, 200, 12)
+    el = Electron(world, 100, 100)
+    el.body:setLinearVelocity(0, 400)
+    table.insert(self.el, el)
+
+    magnet = Magnet(world, 250, 400, 20, 200, 8)
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 600, 600, 20, 200, 10)
+    magnet = Magnet(world, 600, 400, 20, 200, 10)
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 1000, 400, 20, 200, 12)
+    magnet = Magnet(world, 350, 200, 20, 200, 8)
     table.insert(self.magnet, magnet)
+
+    magnet = Magnet(world, 700, 200, 20, 200, 10)
+    table.insert(self.magnet, magnet)
+
+    proton = Proton(world, 400, 300)
+    proton.body:setLinearVelocity(0, 300)
+    table.insert(self.proton, proton)
 end
 
 function LevelOne:update(dt)
@@ -61,17 +79,22 @@ function LevelOne:update(dt)
     	Shock:fire(self.force)
     	down = false
     end
+    for index, table in pairs(self.all) do
+        for index2, whatever in pairs(table) do
+            if whatever.update then
+                whatever:update(dt)
+            end
+        end
+    end
 end
 
 function LevelOne:draw()
-	for index, wall in pairs(self.walls) do
-		wall:draw()
-	end
-	for index, el in pairs(self.el) do
-		el:draw()
-	end
-    for index, magnet in pairs(self.magnet) do
-        magnet:draw()
+    for index, table in pairs(self.all) do
+        for index2, whatever in pairs(table) do
+            if whatever.draw then
+                whatever:draw()
+            end
+        end
     end
 end
 

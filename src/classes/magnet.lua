@@ -27,6 +27,16 @@ function Magnet:update(dt)
 end
 
 function Magnet:draw()
+    love.graphics.setColor(255, 37, 0, 255)
+    love.graphics.circle("fill", self.body:getX(), self.body:getY(), 25)
     love.graphics.setColor(255, 255, 255, 255)
     love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
+    love.graphics.setColor(255, 37, 0, 200)
+    love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
+    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15)
+    love.graphics.setColor(255, 37, 0, 120)
+    love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15)
+    love.graphics.setColor(255, 37, 0, 80)
+    love.graphics.circle("fill", self.body:getX(), self.body:getY(), 8)
 end
