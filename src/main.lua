@@ -5,6 +5,7 @@ require("core/helper")
 
 require("states/Level1")
 require("states/Level2")
+require("states/Level3")
 require("states/MenuState")
 require("states/GameOverState")
 require("states/CreditsState")
@@ -35,8 +36,10 @@ function love.load()
     levels = {}
     level1 = Level1()
     level2 = Level2()
+    level3 = Level3()
     levels[1] = level1
     levels[2] = level2
+    levels[3] = level3
 
     stack:push(menu)
 end
