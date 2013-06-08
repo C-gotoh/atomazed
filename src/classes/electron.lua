@@ -12,5 +12,6 @@ function Electron:update(dt)
 end
 
 function Electron:draw()
+	love.graphics.setColor(0, 0, 255, 125)
 	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20)
 end

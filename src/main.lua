@@ -1,3 +1,4 @@
+require("core/mathhelper")
 require("core/resources")
 require("core/stackhelper")
 require("core/helper")
