@@ -72,7 +72,7 @@ end
 
 function Level:update(dt)
     world:update(dt)
-    if self.minElectrons <= #self.el then
+    if self.minElectrons >= #self.el then
         local save = {}
         save.saves = self.index+1
         success = love.filesystem.write( "save.lua", table.show(save, "saved"))
