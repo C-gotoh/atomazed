@@ -19,6 +19,7 @@ function love.load()
     
     resources:addFont("default", "data/font/SwankyandMooMoo.ttf", 20)
     resources:addFont("big", "data/font/SwankyandMooMoo.ttf", 60)
+    resources:addImage("particle", "data/images/particle.png", 60)
 
     resources:load()
     

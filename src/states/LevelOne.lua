@@ -8,6 +8,7 @@ require("classes/proton")
 require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
+require("classes/explosion")
 
 LevelOne = class("LevelOne", State)
 
@@ -28,6 +29,8 @@ function LevelOne:load()
     self.portal = {}
     table.insert(self.all, self.portal)
     self.positionQueue = {}
+    self.explosions = {}
+    table.insert(self.all, self.explosions)
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -160,12 +163,18 @@ function LevelOne:beginContact(a, b, coll)
             if value == objectb then
                 table.remove(self.el, index)
                 value.body:destroy()
+                local p1 = Explosion(33, 0, 255, 0, 0, 255)
+    			p1.system:start()
+    			table.insert(self.explosions, p1)
             end
         end
         for index, value in pairs(self.proton) do
             if value == objecta then
                 table.remove(self.proton, index)
                 value.body:destroy()
+                local p1 = Explosion(200, 200, 255, 0, 0, 255)
+    			p1.system:start()
+    			table.insert(self.explosions, p1)
             end
         end
     elseif (objecta.__name == "Electron") and (objectb.__name == "Proton") then
