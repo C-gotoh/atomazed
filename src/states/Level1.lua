@@ -89,7 +89,7 @@ function Level1:load()
 
     self.darkness = 0 
     self.maxElectrons = 22
-    self.minElectrons = 2
+    self.minElectrons = 0
 end
 
 function Level1:update(dt)
@@ -99,7 +99,7 @@ function Level1:update(dt)
         screenshot = love.graphics.newImage(canvas)
         local save = {}
         save.saves = self.index+1
-        success = love.filesystem.write( "save.lua", table.show(save, "saved")) -- puts the hero table as lua code table named loadedhero
+        success = love.filesystem.write( "save.lua", table.show(save, "saved"))
         local canvas = love.graphics.newScreenshot()
         screenshot = love.graphics.newImage(canvas)
         stack:push(gameover)
