@@ -27,6 +27,8 @@ function LevelOne:load()
     table.insert(self.walls, wall)
     wall = Wall(world, 0, 384, 4, 768, "static")
     table.insert(self.walls, wall)
+    wall = Wall(world, 200, 300, 10, 600, "static")
+    table.insert(self.walls, wall)
 
     el = Electron(world, 200, 200)
     table.insert(self.el, el)
