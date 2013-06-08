@@ -3,6 +3,7 @@ require("core/physicshelper")
 require("core/state")
 
 require("classes/wall")
+require("classes/electron")
 
 MainState = class("MainState", State)
 
@@ -25,6 +26,8 @@ function MainState:load()
     table.insert(self.walls, wall)
     wall = Wall(world, 0, 384, 4, 768, "static")
     table.insert(self.walls, wall)
+
+    el = Electron(world, 200, 200)
 end
 
 function MainState:update(dt)
@@ -35,6 +38,7 @@ function MainState:draw()
 	for index, wall in pairs(self.walls) do
 		love.graphics.polygon("fill", wall.body:getWorldPoints(wall.shape:getPoints()))
 	end
+    el:draw()
 end
 
 function MainState:restart()

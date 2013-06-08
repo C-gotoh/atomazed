@@ -19,7 +19,6 @@ function LevelOne:update(dt)
 end
 
 function LevelOne:draw()
-
 end
 
 function beginCollision(a, b, coll)
