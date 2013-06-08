@@ -31,11 +31,11 @@ function LevelOne:load()
 
     wall = Wall(world, 512, 0, 1024, 4, "static")
     table.insert(self.walls, wall)
-    wall = Wall(world, 512, 768, 1024, 4, "static")
+    wall = Wall(world, 512, 600, 1024, 4, "static")
     table.insert(self.walls, wall)
-    wall = Wall(world, 1024, 384, 4, 768, "static")
+    wall = Wall(world, 1024, 300, 4, 600, "static")
     table.insert(self.walls, wall)
-    wall = Wall(world, 0, 384, 4, 768, "static")
+    wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
     el = Electron(world, 100, 200)
@@ -58,7 +58,7 @@ function LevelOne:load()
     magnet = Magnet(world, 700, 200, 20, 200, 10)
     table.insert(self.magnet, magnet)
 
-    proton = Proton(world, 400, 700)
+    proton = Proton(world, 400, 300)
     proton.body:setLinearVelocity(0, 300)
     table.insert(self.proton, proton)
 end

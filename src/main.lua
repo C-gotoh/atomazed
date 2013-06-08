@@ -22,7 +22,7 @@ function love.load()
 
     resources:load()
     
-    love.graphics.setMode(1024, 768, false, true, 0) -- Fensteroberfläche
+    love.graphics.setMode(1024, 600, false, true, 0) -- Fensteroberfläche
 
     stack = StackHelper()
     levelone = LevelOne()
