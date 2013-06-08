@@ -67,6 +67,10 @@ function Level2:load()
     self.darkness = 0 
     self.maxElectrons = 22
     self.minElectrons = 50
+
+    self.limitshock = 3
+    self.limitmagnet1 = 0
+    self.limitmagnet2 = 0
 end
 
 function Level2:update(dt)

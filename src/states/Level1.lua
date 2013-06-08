@@ -88,6 +88,10 @@ function Level1:load()
     self.maxElectrons = 22
     self.minElectrons = 0
     self.endtimer = 0
+
+    self.limitshock = 3
+    self.limitmagnet1 = 0
+    self.limitmagnet2 = 0
 end
 
 function Level1:update(dt)

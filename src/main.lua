@@ -37,6 +37,7 @@ function love.load()
     level2 = Level2()
     levels[1] = level1
     levels[2] = level2
+    lol = 2
 
     stack:push(menu)
 end
