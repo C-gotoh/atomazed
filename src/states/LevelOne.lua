@@ -6,11 +6,12 @@ require("classes/wall")
 require("classes/electron")
 require("classes/proton")
 require("classes/magnet")
+require("classes/shock")
 
 LevelOne = class("LevelOne", State)
 
 function LevelOne:__init()
-
+	self.force = 0
 end
 
 function LevelOne:load()
@@ -70,9 +71,19 @@ function LevelOne:update(dt)
             magnet:addForce(el)
         end
     end
+
     for index, el in pairs(self.el) do 
         fraction(el)
         print(el.body:getLinearVelocity())
+end
+    if love.mouse.isDown("l") then
+    	down = true
+    	self.force = self.force + dt
+    	print(down)
+    elseif down then
+    	Shock:fire(self.force)
+    	down = false
+
     end
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do

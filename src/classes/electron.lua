@@ -5,6 +5,8 @@ function Electron:__init(world, x, y)
 	self.shape = love.physics.newCircleShape(20)
 	self.fixture = love.physics.newFixture(self.body, self.shape)
 	self.fixture:setUserData(self)
+	self.x = x
+	self.y = y
 	self.wobble = 1
 end
 
