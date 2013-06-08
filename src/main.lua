@@ -3,6 +3,7 @@ require("core/resources")
 require("core/stackhelper")
 require("core/helper")
 
+require("states/Level")
 require("states/Level1")
 require("states/Level2")
 require("states/Level3")

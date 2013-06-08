@@ -2,7 +2,7 @@ Proton = class("Proton")
 
 function Proton:__init(world, x, y)
 	self.body = love.physics.newBody(world, x, y, "dynamic")
-	self.shape = love.physics.newCircleShape(20)
+	self.shape = love.physics.newCircleShape(18)
 	self.fixture = love.physics.newFixture(self.body, self.shape)
 	self.fixture:setUserData(self)
 	self.fixture:setRestitution(0.5)  
