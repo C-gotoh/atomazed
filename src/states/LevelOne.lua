@@ -51,9 +51,22 @@ function LevelOne:load()
     proton.body:setLinearVelocity(0, 100)
     table.insert(self.proton, proton)
 
+
     proton = Proton(world, 300, 450)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
+
+    for i = 1, 20, 1 do
+        proton = Proton(world, math.random(50, 1000), math.random(50, 550))
+        proton.body:setLinearVelocity(math.random(0, 400), math.random(0, 400))
+        table.insert(self.proton, proton)
+    end
+
+    for i = 1, 20, 1 do
+        el = Electron(world, math.random(50, 1000), math.random(50, 550))
+        el.body:setLinearVelocity(math.random(0, 400), math.random(0, 400))
+        table.insert(self.el, el)
+    end
 
     magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
@@ -61,12 +74,15 @@ function LevelOne:load()
     magnet = Magnet(world, 800, 400, 20, 200, 12, "Proton")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 350, 200, 20, 200, 12, "Electron")
+    magnet = Magnet(world, 350, 200, 20, 200, 12, "Proton")
     table.insert(self.magnet, magnet)
 
-    magnet = Magnet(world, 700, 200, 20, 200, 12, "Proton")
+    magnet = Magnet(world, 700, 200, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
+    self.darkness = 0 
+    self.maxElectrons = 22
+    self.minElectrons = 18
 end
 
 function LevelOne:update(dt)
@@ -104,6 +120,7 @@ function LevelOne:draw()
             end
         end
     end
+    self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 255*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
 end
