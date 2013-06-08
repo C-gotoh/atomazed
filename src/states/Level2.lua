@@ -74,6 +74,9 @@ function Level2:update(dt)
     if self.minElectrons <= #self.el then
         local canvas = love.graphics.newScreenshot()
         screenshot = love.graphics.newImage(canvas)
+        local save = {}
+        save.saves = self.index+1
+        success = love.filesystem.write( "save.lua", table.show(save, "saved"))
         stack:push(gameover)
     end
     for index, magnet in pairs(self.magnet) do
