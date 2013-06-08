@@ -47,3 +47,7 @@ end
 function StackHelper:update(dt)
     if self:current() then self:current():update(dt) end
 end
+
+function StackHelper:beginContact(a, b, coll)
+    if self:current():beginContact() then self:current():beginContact(a, b, coll) end
+end
