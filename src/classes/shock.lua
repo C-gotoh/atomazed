@@ -26,8 +26,11 @@ function Shock:fire(force)
 				self.yforce = -800
 			end
 			value.body:applyForce(self.xforce, self.yforce)
-			--limitSystem(value, 800)
-			--value.body:applyForce(200,200)
+
+			shockeffect = Shockeffect(world, self.x, self.y)
+
+			table.insert(levelone.shockeffect, shockeffect)
+
 		end
 	end
 end

@@ -1,34 +1,24 @@
 Shockeffect = class("shockeffect")
 
 function Shockeffect:__init(world, x, y)
-	self.body = love.physics.newBody(world, x, y, "dynamic")
-	self.shape = love.physics.newCircleShape(20)
-	self.fixture = love.physics.newFixture(self.body, self.shape)
-	self.fixture:setUserData(self)
+	self.x = x
+	self.y = y
 	self.wobble = 1
+	self.r = 1
 end
 
 function Shockeffect:update(dt)
-	if self.flag == true then
-		self.wobble = self.wobble + dt*0.2
-		if self.wobble > 1 then
-			self.flag = false
-		end
-	else 
-		self.wobble = self.wobble - dt*0.2
-		if self.wobble < 0.8 then
-			self.flag = true
-		end
-	end
+	self.r = self.r + 1
 end
 
 function Shockeffect:draw()
-	love.graphics.setColor(255, 37, 0, 80)
-	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 25*self.wobble)
-	love.graphics.setColor(255, 37, 0, 120)
-	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 20*self.wobble)
+	love.graphics.setColor(255, 255, 255, 80)
+	love.graphics.circle("line", self.x, self.y, self.r)
+	--[[love.graphics.setColor(255, 37, 0, 120)
+	love.graphics.circle("line", self.x, self.y, i)
 	love.graphics.setColor(255, 37, 0, 200)
-	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 15*self.wobble)
+	love.graphics.circle("line", self.x, self.y, i)
 	love.graphics.setColor(255, 37, 0, 255)
-	love.graphics.circle("fill", self.body:getX(), self.body:getY(), 8*self.wobble)
+	love.graphics.circle("line", self.x, self.y, i)
+	--]]
 end
