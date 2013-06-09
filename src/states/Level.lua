@@ -72,7 +72,7 @@ function Level:load()
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
+    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
