@@ -73,7 +73,7 @@ function Level7:load()
 
 
     self.darkness = 0 
-    self.maxElectrons = 22
+    self.maxElectrons = 1
     self.minElectrons = 0
     self.endtimer = 0
 

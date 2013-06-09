@@ -84,7 +84,7 @@ function Level4:load()
 
 
     self.darkness = 0 
-    self.maxElectrons = 22
+    self.maxElectrons = 2
     self.minElectrons = 0
     self.endtimer = 0
 

@@ -14,6 +14,7 @@ require("states/Level7")
 require("states/Level8")
 require("states/Level9")
 require("states/Level10")
+require("states/LevelEnd")
 require("states/MenuState")
 require("states/GameOverState")
 require("states/CreditsState")
@@ -55,6 +56,8 @@ function love.load()
     level9 = Level9()
     level10 = Level10()
 
+    levelend = LevelEnd()
+
     levels[1] = level1
     levels[2] = level2
     levels[3] = level3
@@ -65,6 +68,8 @@ function love.load()
     levels[8] = level8
     levels[9] = level9
     levels[10] = level10
+
+    levels[20] = levelend
     stack:push(menu)
 end
 
