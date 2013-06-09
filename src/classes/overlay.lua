@@ -37,3 +37,14 @@ function drawStats()
 		love.graphics.print(stack:current().__name,30, 20)
 	end
 end
+
+function drawBar(force, disabled, mouse)
+	love.graphics.setColor(7, 25, 0, 100)
+	love.graphics.rectangle("fill",love.graphics.getWidth()/2 - 199, 20+1, 398, 23)
+	love.graphics.setColor(255, 255, 255, 100)
+	love.graphics.rectangle("line",love.graphics.getWidth()/2 - 200, 20, 400, 25)
+	if not disabled and mouse == 1 then
+		love.graphics.setColor(255 * force, 0, 0, 150)
+		love.graphics.rectangle("fill",love.graphics.getWidth()/2 - 199, 20+1, 398 * force, 23)
+	end
+end
