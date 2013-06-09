@@ -190,8 +190,8 @@ function Level:draw()
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
     if self.stringtimer < 6 then
-        love.graphics.setColor(255, 255, 255, 255)
-        love.graphics.setFont(resources.fonts.thirty)
+        love.graphics.setColor(255, 255, 255, 120)
+        love.graphics.setFont(resources.fonts.twentyfive)
         love.graphics.print(self.string[1], self.string[2], self.string[3])
     end
     if self.mousetype == 2 then
@@ -246,16 +246,20 @@ function Level:mousepressed(x, y, button)
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
             self.magnetlimitp = self.magnetlimitp - 1
+            self.mousetype = 1
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
             self.feedback = true
+            self.mousetype = 1
         end
     elseif button == "r" then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
             table.insert(self.magnet, magnet)
-            self.magnetlimite = self.magnetlimite - 2
+            self.magnetlimite = self.magnetlimite - 1
+            self.mousetype = 1
         elseif (self.magnetlimite == 0) and (self.mousetype == 2) then
             self.feedback = true
+            self.mousetype = 1
         end
     end
 end

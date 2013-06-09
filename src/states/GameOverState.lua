@@ -53,14 +53,15 @@ function GameOverState:draw()
 
     love.graphics.setColor(255, 255, 255, 255*self.runner)
     love.graphics.setFont(resources.fonts.big)
-    love.graphics.print("LEVEL COMPLETED", 280, 200)
+    love.graphics.print("LEVEL COMPLETED", love.graphics.getWidth()/2 - resources.fonts.big:getWidth("LEVEL COMPLETED")/2, 200)
     for i, v in pairs(self.menulist) do
-        local scroll = i * 200 + 50
         if i == self.index then
             love.graphics.setFont(resources.fonts.forty)
+            local scroll = i*(love.graphics.getWidth()/3) - resources.fonts.big:getWidth(v)
             love.graphics.print(v, scroll, 400)
         else
             love.graphics.setFont(resources.fonts.thirty)
+            local scroll = i*(love.graphics.getWidth()/3) - resources.fonts.big:getWidth(v)
             love.graphics.print(v, scroll, 400)
         end
     end

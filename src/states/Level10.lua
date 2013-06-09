@@ -82,8 +82,8 @@ function Level10:load()
     table.insert(self.el, el)
 
     self.darkness = 0 
-    self.maxElectrons = 22
-    self.minElectrons = 0
+    self.maxElectrons = 2
+    self.minElectrons = 2
     self.endtimer = 0
 
     self.limitshock = 3

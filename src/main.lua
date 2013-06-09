@@ -14,6 +14,7 @@ require("states/Level7")
 require("states/Level8")
 require("states/Level9")
 require("states/Level10")
+require("states/LevelEnd")
 require("states/MenuState")
 require("states/GameOverState")
 require("states/CreditsState")
@@ -24,11 +25,11 @@ function love.load()
     resources = Resources()
 
     resources:addFont("seventeen", "data/font/Audiowide-Regular.ttf", 15)
-    resources:addFont("twenty", "data/font/Audiowide-Regular.ttf", 18)
+    resources:addFont("twenty", "data/font/Audiowide-Regular.ttf", 15)
     resources:addFont("twentyfive", "data/font/Audiowide-Regular.ttf", 23)
-    resources:addFont("thirty", "data/font/Audiowide-Regular.ttf", 28)
-    resources:addFont("forty", "data/font/Audiowide-Regular.ttf", 38)
-    resources:addFont("fifty", "data/font/Audiowide-Regular.ttf", 58)
+    resources:addFont("thirty", "data/font/Audiowide-Regular.ttf", 25)
+    resources:addFont("forty", "data/font/Audiowide-Regular.ttf", 32)
+    resources:addFont("fifty", "data/font/Audiowide-Regular.ttf", 40)
     
     resources:addFont("default", "data/font/Audiowide-Regular.ttf", 18)
     resources:addFont("big", "data/font/Audiowide-Regular.ttf", 50)
@@ -55,6 +56,8 @@ function love.load()
     level9 = Level9()
     level10 = Level10()
 
+    levelend = LevelEnd()
+
     levels[1] = level1
     levels[2] = level2
     levels[3] = level3
@@ -65,6 +68,8 @@ function love.load()
     levels[8] = level8
     levels[9] = level9
     levels[10] = level10
+
+    levels[20] = levelend
     stack:push(menu)
 end
 

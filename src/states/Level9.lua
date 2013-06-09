@@ -109,7 +109,7 @@ function Level9:load()
     table.insert(self.el, el)
 
     self.darkness = 0 
-    self.maxElectrons = 22
+    self.maxElectrons = 6
     self.minElectrons = 2
     self.endtimer = 0
 
