@@ -24,9 +24,9 @@ function love.load()
     resources = Resources()
 
     resources:addFont("seventeen", "data/font/Audiowide-Regular.ttf", 15)
-    resources:addFont("twenty", "data/font/Audiowide-Regular.ttf", 18)
+    resources:addFont("twenty", "data/font/Audiowide-Regular.ttf", 15)
     resources:addFont("twentyfive", "data/font/Audiowide-Regular.ttf", 23)
-    resources:addFont("thirty", "data/font/Audiowide-Regular.ttf", 28)
+    resources:addFont("thirty", "data/font/Audiowide-Regular.ttf", 25)
     resources:addFont("forty", "data/font/Audiowide-Regular.ttf", 32)
     resources:addFont("fifty", "data/font/Audiowide-Regular.ttf", 40)
     
