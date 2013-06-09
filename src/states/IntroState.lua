@@ -3,17 +3,17 @@ require("classes/overlay")
 IntroState = class("IntroState", State)
 
 function IntroState:__init()
-	self.font = resources.fonts.thirty
+	self.font = resources.fonts.twentyfive
 end
 
 function IntroState:load()
-	love.graphics.setFont(self.font)
     self.limitshock = 10
     self.magnetlimitp = 4
     self.magnetlimite = 2
 end
 
 function IntroState:draw()
+	love.graphics.setFont(self.font)
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.print("Press \"R\" for Restart", 50, 50 )
 	love.graphics.setColor(200, 50, 0, 255)
@@ -47,9 +47,9 @@ function IntroState:draw()
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.print("Shockwave", 800, 110 )	
 	love.graphics.setColor(200, 50, 0, 255)
-	love.graphics.print("Protonmagnet", 800, 160 )	
+	love.graphics.print("Electronmagnet", 800, 160 )	
 	love.graphics.setColor(0, 50, 200, 255)
-	love.graphics.print("Electronmagnet", 800, 210 )	
+	love.graphics.print("Protonmagnet", 800, 210 )	
 end
 
 function IntroState:keypressed(key, button)

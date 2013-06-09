@@ -253,7 +253,7 @@ function Level:mousepressed(x, y, button)
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
             table.insert(self.magnet, magnet)
-            self.magnetlimite = self.magnetlimite - 2
+            self.magnetlimite = self.magnetlimite - 1
         elseif (self.magnetlimite == 0) and (self.mousetype == 2) then
             self.feedback = true
         end
