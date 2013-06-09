@@ -5,7 +5,7 @@ function Proton:__init(world, x, y)
 	self.shape = love.physics.newCircleShape(18)
 	self.fixture = love.physics.newFixture(self.body, self.shape)
 	self.fixture:setUserData(self)
-	self.fixture:setRestitution(0.5)  
+	self.fixture:setRestitution(0.8)  
 	self.wobble = 1
 	self.fr = 100
 	self.force = 13

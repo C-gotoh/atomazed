@@ -34,9 +34,6 @@ function Magnet:addForce(object)
 end
 
 function Magnet:update(dt)
-    
-
-
 
     if self.rangevisual < self.radius then
         self.rangevisual = self.fr

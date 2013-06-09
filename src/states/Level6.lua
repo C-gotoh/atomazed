@@ -21,7 +21,7 @@ function Level6:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 6
-    self.string = {"Use the Protal...", 400, 300}
+    self.string = {"Use the Portal... \n It's a one way ticket", 330, 320}
 end
 
 function Level6:load()
@@ -86,7 +86,7 @@ function Level6:load()
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 600, 300, 60, 600, "static", 40, 40, 40, 60)
+    local cwall = ColoredWall(world, 640, 300, 60, 600, "static", 40, 40, 40, 60)
     table.insert(self.walls, cwall)
 
     local portal = Portal(world, 500, 300, 800, 400)
