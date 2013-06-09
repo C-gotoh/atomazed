@@ -6,6 +6,8 @@ require("core/helper")
 require("states/Level")
 require("states/Level1")
 require("states/Level2")
+require("states/Level2_1")
+require("states/Level2_2")
 require("states/Level3")
 require("states/Level4")
 require("states/Level5")
@@ -48,6 +50,7 @@ function love.load()
     levels = {}
     level1 = Level1()
     level2 = Level2()
+    level2_1 = Level2_1()
     level3 = Level3()
     level4 = Level4()
     level5 = Level5()
@@ -61,7 +64,7 @@ function love.load()
     levelend = LevelEnd()
 
     levels[1] = level1
-    levels[2] = level2
+    levels[2] = level2_1
     levels[3] = level3
     levels[4] = level4
     levels[5] = level5

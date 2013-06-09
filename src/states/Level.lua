@@ -211,7 +211,7 @@ function Level:draw()
     if self.feedback == true then
         love.graphics.setColor(200, 50, 0, 200*(1-self.feedbacktimer))
         print(self.feedbacktimer)
-        love.graphics.circle("line", love.mouse.getX(), love.mouse.getY(), (20*(1-self.feedbacktimer)),100)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), (20*(1-self.feedbacktimer)),100)
     end
 end
 

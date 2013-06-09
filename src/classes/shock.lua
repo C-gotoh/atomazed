@@ -33,6 +33,7 @@ function Shock:fire(force)
 				if self.yforce < -800 then
 					self.yforce = -800
 				end
+				-- print(self.xforce .. " " .. self.yforce)
 				value.body:applyForce(self.xforce, self.yforce)
 
 			end
