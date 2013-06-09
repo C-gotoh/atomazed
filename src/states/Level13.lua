@@ -62,27 +62,23 @@ function Level13:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
 
-    local proton = Proton(world, 400, 100)
-    proton.body:setLinearVelocity(0, 100)
+    local proton = Proton(world, 200, 100)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 800)
+    local el = Electron(world, 250, 550)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 100, 100, 100, 50)
+    local cwall = ColoredWall(world, 300, 500, 600, 10, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
-    self.maxElectrons = 22
-    self.minElectrons = -1
+    self.maxElectrons = 1
+    self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 3
-    self.magnetlimitp = 1
-    self.magnetlimite = 1
+    self.limitshock = 2
+    self.magnetlimitp = 2
+    self.magnetlimite = 0
     self.down = false
 end

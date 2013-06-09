@@ -79,7 +79,7 @@ function love.load()
     levels[9] = level9
     levels[10] = level10
     levels[11] = level11
-    levels[1] = level12
+    levels[12] = level12
     levels[13] = level13
     levels[14] = level14
     levels[15] = level15
