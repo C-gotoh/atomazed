@@ -146,6 +146,7 @@ function Level:update(dt)
             self.force = 1
         end
     elseif self.down then
+        Shock:fire(self.force)
         self.down = false
         self.force = 0
     end
@@ -245,12 +246,8 @@ function Level:mousepressed(x, y, button)
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
             self.magnetlimitp = self.magnetlimitp - 1
-            self.mousetype = 1
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
             self.feedback = true
-            self.mousetype = 1
-        elseif self.mousetype == 1 then
-            Shock:fire(self.force)
         end
     elseif button == "r" then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
