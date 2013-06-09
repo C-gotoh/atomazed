@@ -69,7 +69,7 @@ function love.load()
     levels[9] = level9
     levels[10] = level10
 
-    levels[20] = levelend
+    levels[12] = levelend
     stack:push(menu)
 end
 
