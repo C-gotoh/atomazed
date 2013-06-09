@@ -18,7 +18,7 @@ require("classes/shockeffect")
 Level9 = class("Level9", Level)
 
 function Level9:__init()
-    self.__super.__init()
+    self.__super.__init(self)
     self.force = 0
     self.index = 1
 end
