@@ -16,8 +16,8 @@ function MenuState:load()
     world = love.physics.newWorld()
     magnet = Magnet(world, love.graphics.getWidth() / 2 + 100, love.graphics.getHeight()/3, 20, 150, 12, "Electron")
     magnet2 = Magnet(world, love.graphics.getWidth() / 2  -100, love.graphics.getHeight()/3, 20, 150, 12, "Electron")
-    self.el = Electron(world, 345, 150)
-    self.el.body:setLinearVelocity(0, 63)
+    self.el = Electron(world, 340, 150)
+    self.el.body:setLinearVelocity(0, 50)
     self.index = 1
     love.graphics.setFont(self.font)
 end

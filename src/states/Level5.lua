@@ -70,13 +70,13 @@ function Level5:load()
     self.limitmagnet1 = 0
     self.limitmagnet2 = 0
 
-    local cwall = ColoredWall(world, 270, 600, 30, 400, "static", 100, 100, 100, 255)
+    local cwall = ColoredWall(world, 270, 600, 30, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
         
-    local cwall = ColoredWall(world, 270, 600, 30, 500, "static", 100, 100, 100, 255)
+    local cwall = ColoredWall(world, 270, 600, 30, 500, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
-    local cwall = ColoredWall(world, 650, 200, 30, 400, "static", 100, 100, 100, 255)
+    local cwall = ColoredWall(world, 650, 200, 30, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     local magnet = Magnet(world, 270, 350, 20, 200, 12, "Electron")
