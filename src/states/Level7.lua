@@ -68,7 +68,7 @@ function Level7:load()
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 20)
+    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
 
@@ -78,7 +78,7 @@ function Level7:load()
     self.endtimer = 0
 
     self.limitshock = 6
-    self.limitmagnet1 = 0
-    self.limitmagnet2 = 0
+    self.magnetlimitp = 0
+    self.magnetlimite = 0
 
 end

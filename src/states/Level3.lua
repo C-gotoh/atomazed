@@ -59,15 +59,18 @@ function Level3:load()
     local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
     table.insert(self.magnet, magnet)
 
-    local proton = Proton(world, 800, 500)
+    local magnet = Magnet(world, 500, 240, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    local proton = Proton(world, 800, 480)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 100, 50)
+    local el = Electron(world, 100, 100)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 20)
+    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
@@ -76,6 +79,6 @@ function Level3:load()
     self.endtimer = 0
 
     self.limitshock = 1
-    self.limitmagnet1 = 0
-    self.limitmagnet2 = 0
+    self.magnetlimitp = 0
+    self.magnetlimite = 0
 end

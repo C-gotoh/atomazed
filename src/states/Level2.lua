@@ -74,6 +74,6 @@ function Level2:load()
     self.endtimer = 0
 
     self.limitshock = 3
-    self.limitmagnet1 = 0
-    self.limitmagnet2 = 0
+    self.magnetlimitp = 0
+    self.magnetlimite = 0
 end

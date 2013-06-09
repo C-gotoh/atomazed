@@ -22,6 +22,7 @@ function Level:__init()
     self.index = 0
     self.string = {"", 0, 0}
     self.stringtimer = 0
+    self.mousetype = 1
 end
 
 function Level:load()
@@ -75,12 +76,11 @@ function Level:load()
     self.maxElectrons = 22
     self.minElectrons = -1
     self.endtimer = 0
-    self.stringtimer = 0
 
     self.limitshock = 3
-    self.limitmagnet1 = 0
-    self.limitmagnet2 = 0
-
+    self.magnetlimitp = 1
+    self.magnetlimite = 1
+    self.down = false
 end
 
 function Level:update(dt)
@@ -138,16 +138,20 @@ function Level:update(dt)
     end
 
     if love.mouse.isDown("l") then
-        down = true
-        self.force = self.force + dt
+        if self.mousetype == 1 then
+            self.force = self.force + dt
+            self.down = true
+        elseif self.mousetype == 2 then
+            self.down = false
+            self.force = 0
+        end
         if self.force > 1 then
             self.force = 1
         end
-    elseif down then
+    elseif self.down then
         Shock:fire(self.force)
-        down = false
+        self.down = false
         self.force = 0
-
     end
     for index, table in pairs(self.all) do
         for index2, whatever in pairs(table) do
@@ -199,11 +203,37 @@ function Level:keypressed(key, u)
     elseif key == "escape" then
         stack:pop()
         stack:current():load()
+    elseif key == " " then
+        if self.mousetype == 1 then
+            self.mousetype = 2
+        elseif self.mousetype == 2 then
+            self.mousetype = 1
+        end
     end
 end
 
 
 function Level:mousepressed(x, y, button)
+    if button == "m" then
+        if self.mousetype == 1 then
+            self.mousetype = 2
+        elseif self.mousetype == 2 then
+            self.mousetype = 1
+        end
+    end
+    if button == "l" then
+        if (self.magnetlimitp > 0) and (self.mousetype == 2) then
+            local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
+            table.insert(self.magnet, magnet)
+            self.magnetlimitp = self.magnetlimitp - 1
+        end
+    elseif button == "r" then
+        if (self.magnetlimite > 0) and (self.mousetype == 2) then
+            local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
+            table.insert(self.magnet, magnet)
+            self.magnetlimite = self.magnetlimite - 2
+        end
+    end
 end
 
 --Collision function

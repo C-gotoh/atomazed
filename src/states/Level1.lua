@@ -21,7 +21,7 @@ function Level1:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 1
-    self.string = {"Well, that seems to be easy...", 100, 450}
+    self.string = {"Try to push that Electrons in those Protons", 100, 500}
 end
 
 function Level1:load()
@@ -94,6 +94,6 @@ function Level1:load()
     self.endtimer = 0
 
     self.limitshock = 3
-    self.limitmagnet1 = 0
-    self.limitmagnet2 = 0
+    self.magnetlimitp = 1
+    self.magnetlimite = 1
 end
