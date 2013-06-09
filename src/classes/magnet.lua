@@ -7,12 +7,13 @@ function Magnet:__init(world, x, y, r, fr, force, typ)
     self.fixture = love.physics.newFixture(self.body, self.shape)
     self.fixture:setUserData(self)
     self.fr = fr -- range
-    self.rangevisual = self.fr
-    self.rangevisual2 = self.fr
-    self.variabler = self.fr
+    self.rangevisual = 0
+    self.wobblecounter = 0
+    self.wobbleradius = fr
     self.force = force
     self.type = typ
-    self.counter = 0
+    self.outercounter = 0
+    self.fadevalue = 255
     self.color_fac = force / 12
 end
 
@@ -34,19 +35,28 @@ function Magnet:addForce(object, dt)
 end
 
 function Magnet:update(dt)
-    if self.rangevisual < self.radius then
-        self.rangevisual = self.fr
-        self.counter = 0
+
+    -- calculate outer
+
+    if self.rangevisual > self.fr then
+        self.rangevisual = 0
+        self.outercounter = 0
+        self.fadevalue = 255 -- reset fade
     end
     
-    self.rangevisual = self.rangevisual - (1+self.counter)
-    self.counter = self.counter + 0.01
+    self.rangevisual = self.rangevisual + (1+self.outercounter)
+    self.outercounter = self.outercounter + 0.01
+
+         -- calc fade
+    self.fadevalue = 255 - self.rangevisual
 
 
 
-    self.rangevisual2 = self.rangevisual2 + 0.05
+    -- calculate innerwobble
 
-    self.variabler = 10*(math.sin(self.rangevisual2))+self.radius+15
+    self.wobblecounter = self.wobblecounter + 0.05
+
+    self.wobbleradius = 10*(math.sin(self.wobblecounter))
 
 end
 
@@ -66,14 +76,19 @@ function Magnet:draw()
         love.graphics.setColor(255, 37, 0, self.color_fac * 80)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 8)
 
-        --visualize
+        --visualize range
+
+            --inner wobble
+
         love.graphics.setColor(255, 37, 0, self.color_fac * 80)
-        love.graphics.circle("line", self.body:getX(), self.body:getY(), self.variabler)
+        love.graphics.circle("line", self.body:getX(), self.body:getY(), self.wobbleradius+self.radius+20)
+
+            --outer
 
         love.graphics.setColor(255, 255, 255, 5)
-        love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.rangevisual)
+        --love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.rangevisual)
 
-        love.graphics.setColor(255, 37, 0, self.color_fac * 80)
+        love.graphics.setColor(255, 37, 0, self.fadevalue)
         love.graphics.circle("line", self.body:getX(), self.body:getY(), self.rangevisual)
 
     elseif self.type == "Proton" then
@@ -90,14 +105,19 @@ function Magnet:draw()
         love.graphics.setColor(56, 222, 255, self.color_fac * 80)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), 8)
 
-        --visualize
+        --visualize range
+
+            -- inner wobble
+
         love.graphics.setColor(56, 222, 255, self.color_fac * 80)
-        love.graphics.circle("line", self.body:getX(), self.body:getY(), self.variabler)
+        love.graphics.circle("line", self.body:getX(), self.body:getY(), self.wobbleradius+self.radius+20)
+
+            -- outer circle
 
         love.graphics.setColor(255, 255, 255, 5)
         love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.rangevisual)
 
-        love.graphics.setColor(255, 222, 255, self.color_fac * 80)
+        love.graphics.setColor(255, 222, 255, self.fadevalue)
         love.graphics.circle("line", self.body:getX(), self.body:getY(), self.rangevisual)
     end 
 end
