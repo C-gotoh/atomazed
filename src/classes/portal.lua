@@ -8,6 +8,8 @@ function Portal:__init(world, x, y, xt, yt)
 	self.xt = xt
 	self.yt = yt
 	self.wobble = 1
+	self.fr = 50
+	self.force = 1
 end
 
 function Portal:update(dt)
@@ -22,6 +24,20 @@ function Portal:update(dt)
 			self.flag = true
 		end
 	end
+end
+
+function Portal:addForce(object)
+    local posAx, posAy = object.body:getPosition()
+    local posMx, posMy = self.body:getPosition()
+    local distance = math.sqrt((posAx - posMx)^2 + (posAy - posMy)^2)
+
+    if distance < self.fr then
+        local vectorscale = (self.fr/distance) * (1/self.force)
+        forcevectorx = vectorscale*(posMx - posAx)
+        forcevectory = vectorscale*(posMy - posAy)
+        newvectorx, newvectory = object.body:getLinearVelocity()
+        object.body:applyForce(forcevectorx,forcevectory)
+    end
 end
 
 function Portal:draw()

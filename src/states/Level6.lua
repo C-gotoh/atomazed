@@ -125,6 +125,14 @@ function Level6:update(dt)
         end
     end
 
+    for index, portal in pairs(self.portal) do
+        for index2, el in pairs(self.el) do
+            portal:addForce(el)
+        end
+        for index2, proton in pairs(self.proton) do
+            portal:addForce(proton)
+        end
+    end
     for index, proton in pairs(self.proton) do
         for indexzwo, protonzwo in pairs(self.proton) do
             if proton ~= protonzwo then
