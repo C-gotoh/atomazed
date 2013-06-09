@@ -186,7 +186,7 @@ function Level:draw()
             end
         end
     end
-    drawBar(self.force, self.disabled)
+    drawBar(self.force, self.disabled, self.mousetype)
     drawStats()
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
