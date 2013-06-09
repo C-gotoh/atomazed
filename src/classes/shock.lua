@@ -113,10 +113,8 @@ function Shock:fire(force)
 						end
 					end
 				end
-
-				print("-------")
-				print(self.xforce .. " lol " .. self.yforce)
-				value.body:applyLinearImpulse(self.xforce, self.yforce, self.x, self.y)
+				-- print(self.xforce .. " " .. self.yforce)
+				value.body:applyForce(self.xforce, self.yforce)
 
 			end
 		end
