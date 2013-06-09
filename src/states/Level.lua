@@ -141,7 +141,7 @@ function Level:update(dt)
     end
 
     if love.mouse.isDown("l") then
-        self.force = self.force + dt * 0.85
+        self.force = self.force + dt * 0.6
         self.down = true
         if self.force > 1 then
             self.force = 1

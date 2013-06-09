@@ -19,6 +19,7 @@ require("states/Level10")
 require("states/Level11")
 require("states/Level20")
 require("states/Level21")
+require("states/Level23")
 require("states/LevelEnd")
 require("states/MenuState")
 require("states/GameOverState")
@@ -50,7 +51,7 @@ function love.load()
     credit = CreditsState()
     intro = IntroState()
     levels = {}
-    level1 = Level1()
+    level1 = Level23()
     level2 = Level2()
     level2_1 = Level2_1()
     level3 = Level3()
@@ -64,11 +65,12 @@ function love.load()
     level11 = Level11()
     level20 = Level20()
     level21 = Level21()
+    level23 = Level23()
 
     levelend = LevelEnd()
 
     levels[1] = level1
-    levels[2] = level2_1
+    levels[2] = level2
     levels[3] = level3
     levels[4] = level4
     levels[5] = level5
