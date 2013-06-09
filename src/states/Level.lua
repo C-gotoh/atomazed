@@ -210,7 +210,8 @@ function Level:draw()
     end
     if self.feedback == true then
         love.graphics.setColor(200, 50, 0, 200*(1-self.feedbacktimer))
-        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 20/(1-self.feedbacktimer))
+        print(self.feedbacktimer)
+        love.graphics.circle("line", love.mouse.getX(), love.mouse.getY(), (20*(1-self.feedbacktimer)),100)
     end
 end
 
@@ -255,6 +256,7 @@ function Level:mousepressed(x, y, button)
     if button == "l" then
         if (self.mousetype == 1) and (self.limitshock == 0) then
             self.feedback = true
+            self.disabled = true
         end
     end
     if button == "l" then
