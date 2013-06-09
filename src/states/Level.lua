@@ -13,7 +13,7 @@ require("classes/portal")
 require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
-
+require("classes/overlay")
 
 Level = class("Level", State)
 
@@ -182,6 +182,7 @@ function Level:draw()
             end
         end
     end
+    drawStats()
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
