@@ -1,6 +1,6 @@
 function drawStats()
 	
-	local x = love.graphics.getWidth() - 200
+	local x = love.graphics.getWidth() - 170
 	
 	love.graphics.setColor(255,255,255,200)	
 	love.graphics.setFont(resources.fonts.twenty)
@@ -33,7 +33,7 @@ function drawStats()
 
 	if stack:current().maxElectrons then
 		love.graphics.print(stack:current().maxElectrons-stack:current().maxElectrons .. "/" .. 
-			stack:current().maxElectrons-stack:current().minElectrons .. "  Electrons", (love.graphics.getWidth() - 460), 20)
-		love.graphics.print(stack:current().__name ,(love.graphics.getWidth() - 312), 20)
+			stack:current().maxElectrons-stack:current().minElectrons .. "  Electrons", 110, 20)
+		love.graphics.print(stack:current().__name,30, 20)
 	end
 end
