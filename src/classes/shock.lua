@@ -14,7 +14,7 @@ function Shock:fire(force)
 		end
 		self.fireradius = 200
 
-		self.maxforce = 500
+		self.maxforce = 20
 
 		shockeffect = Shockeffect(world, self.x, self.y, self.force, self.fireradius)
 
