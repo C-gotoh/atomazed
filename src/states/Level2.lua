@@ -21,7 +21,7 @@ function Level2:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 2
-    self.string = {"A little harder this time^^", 250, 50}
+    self.string = {"A little harder this time", 250, 50}
 end
 
 function Level2:load()

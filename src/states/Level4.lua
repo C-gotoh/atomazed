@@ -88,7 +88,7 @@ function Level4:load()
     self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 4
+    self.limitshock = 3
     self.magnetlimitp = 0
     self.magnetlimite = 0
 
