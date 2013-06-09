@@ -100,24 +100,24 @@ function Level:update(dt)
     end
     for index, magnet in pairs(self.magnet) do
         for index2, el in pairs(self.el) do
-            magnet:addForce(el)
+            magnet:addForce(el, dt)
         end
         for index2, proton in pairs(self.proton) do
-            magnet:addForce(proton)
+            magnet:addForce(proton, dt)
         end
     end
     for index, portal in pairs(self.portal) do
         for index2, el in pairs(self.el) do
-            portal:addForce(el)
+            portal:addForce(el, dt)
         end
         for index2, proton in pairs(self.proton) do
-            portal:addForce(proton)
+            portal:addForce(proton, dt)
         end
     end
     for index, proton in pairs(self.proton) do
         for indexzwo, protonzwo in pairs(self.proton) do
             if proton ~= protonzwo then
-                proton:addForce(protonzwo)
+                proton:addForce(protonzwo, dt)
             end
         end
     end
@@ -125,15 +125,15 @@ function Level:update(dt)
     for index, electron in pairs(self.el) do
         for indexzwo, electronzwo in pairs(self.el) do
             if electron ~= electronzwo then
-                electron:addForce(electronzwo)
+                electron:addForce(electronzwo, dt)
             end
         end
     end
 
     for index, proton in pairs(self.proton) do
         for index, electron in pairs(self.el) do
-            proton:addForce(electron)
-            electron:addForce(proton)
+            proton:addForce(electron, dt)
+            electron:addForce(proton, dt)
         end
     end
 

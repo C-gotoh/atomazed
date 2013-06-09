@@ -15,10 +15,11 @@ function Electron:__init(world, x, y)
 	self.tail.system:start()
 end
 
-function Electron:addForce(object)
+function Electron:addForce(object, dt)
     local posAx, posAy = object.body:getPosition()
     local posMx, posMy = self.body:getPosition()
     local distance = math.sqrt((posAx - posMx)^2 + (posAy - posMy)^2)
+    self.dtf = dt * 60
 
     if distance < self.fr then
         local vectorscale = (self.fr/distance) * (1/self.force)
@@ -28,7 +29,7 @@ function Electron:addForce(object)
         forcevectorx = vectorscale*(posMx - posAx)
         forcevectory = vectorscale*(posMy - posAy)
         newvectorx, newvectory = object.body:getLinearVelocity()
-        object.body:applyForce(forcevectorx,forcevectory)
+        object.body:applyForce(forcevectorx * self.dtf,forcevectory *self.dtf)
     end
 end
 

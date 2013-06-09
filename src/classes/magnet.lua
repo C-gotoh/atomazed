@@ -16,11 +16,11 @@ function Magnet:__init(world, x, y, r, fr, force, typ)
     self.color_fac = force / 12
 end
 
-function Magnet:addForce(object)
+function Magnet:addForce(object, dt)
     local posAx, posAy = object.body:getPosition()
     local posMx, posMy = self.body:getPosition()
     local distance = math.sqrt((posAx - posMx)^2 + (posAy - posMy)^2)
-
+    self.dtf = dt * 60
     if distance < self.fr then
         local vectorscale = (self.fr/distance) * (1/self.force)
         if object.__name ~= self.type then
@@ -29,15 +29,11 @@ function Magnet:addForce(object)
         forcevectorx = vectorscale*(posMx - posAx)
         forcevectory = vectorscale*(posMy - posAy)
         newvectorx, newvectory = object.body:getLinearVelocity()
-        object.body:applyForce(forcevectorx,forcevectory)
+        object.body:applyForce((forcevectorx * self.dtf),(forcevectory * self.dtf))
     end
 end
 
 function Magnet:update(dt)
-    
-
-
-
     if self.rangevisual < self.radius then
         self.rangevisual = self.fr
         self.counter = 0

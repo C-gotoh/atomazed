@@ -25,10 +25,11 @@ function Proton:update(dt)
 	end
 end
 
-function Proton:addForce(object)
+function Proton:addForce(object, dt)
     local posAx, posAy = object.body:getPosition()
     local posMx, posMy = self.body:getPosition()
     local distance = math.sqrt((posAx - posMx)^2 + (posAy - posMy)^2)
+    self.dtf = 60 * dt
 
     if distance < self.fr then
         local vectorscale = (self.fr/distance) * (1/self.force)
@@ -38,7 +39,7 @@ function Proton:addForce(object)
         forcevectorx = vectorscale*(posMx - posAx)
         forcevectory = vectorscale*(posMy - posAy)
         newvectorx, newvectory = object.body:getLinearVelocity()
-        object.body:applyForce(forcevectorx,forcevectory)
+        object.body:applyForce(forcevectorx * self.dtf,forcevectory *self.dtf)
     end
 end
 

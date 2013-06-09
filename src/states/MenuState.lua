@@ -24,8 +24,8 @@ end
 
 
 function MenuState:update(dt)
-    magnet:addForce(self.el)
-    magnet2:addForce(self.el)
+    magnet:addForce(self.el, dt)
+    magnet2:addForce(self.el, dt)
     magnet:update()
     magnet2:update()
     world:update(dt)
@@ -33,7 +33,6 @@ function MenuState:update(dt)
     if self.runner > 0.1 then
         self.runner = -0.1
     end
-    love.timer.sleep(0.05)
     self.wobble = 1 + math.abs(self.runner)
     self.runner2 = self.runner2 + dt/7
     if self.runner2 > 0.1 then
