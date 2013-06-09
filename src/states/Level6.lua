@@ -86,7 +86,7 @@ function Level6:load()
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 640, 300, 60, 600, "static", 40, 40, 40, 60)
+    local cwall = ColoredWall(world, 640, 300, 60, 600, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     local portal = Portal(world, 500, 300, 800, 400)
