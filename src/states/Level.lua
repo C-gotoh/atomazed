@@ -258,6 +258,9 @@ function Level:mousepressed(x, y, button)
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
             self.feedback = true
         end
+        if (self.mousetype == 1) and (self.limitshock == 0) then
+            self.feedback = true
+        end
     elseif button == "r" then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
