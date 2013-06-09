@@ -29,7 +29,7 @@ function Shock:fire(force)
 				self.vectorlength = math.sqrt((value.body:getX()-self.x)^2 + (value.body:getY() - self.y)^2)
 
 				self.xforce = (self.distancescale*self.force*((value.body:getX()-self.x)/self.vectorlength))
-				self.xforce = self.xforce * 100
+				self.xforce = self.xforce
 
 				-- if self.xforce > 6 then
 				--  	self.xforce = 6
@@ -41,7 +41,7 @@ function Shock:fire(force)
 				print("xforce " .. self.xforce)
 				
 				self.yforce = (self.distancescale*self.force*((value.body:getY() - self.y)/self.vectorlength))
-				self.yforce = self.yforce * 100
+				self.yforce = self.yforce 
 
 				-- if self.yforce > 6 then
 				--  	self.yforce = 6
@@ -52,29 +52,29 @@ function Shock:fire(force)
 				-- self.yforce = self.yforce * 100
 
 				print("yforce " .. self.yforce)
-				if math.abs(self.xforce) > 800 or math.abs(self.yforce) > 800 then
+				if math.abs(self.xforce) > 700 or math.abs(self.yforce) > 700 then
 
 					if math.abs(self.xforce) > math.abs(self.yforce) then
 
-						if math.abs(self.yforce) > 800 then
-							self.ratio = math.abs(800/self.xforce)
+						if math.abs(self.yforce) > 700 then
+							self.ratio = math.abs(700/self.xforce)
 
 							if self.xforce > 0 then
-								self.xforce = 800
+								self.xforce = 700
 							else
-								self.xforce = -800
+								self.xforce = -700
 							end
 
 							self.yforce = self.yforce*self.ratio
 							print(self.xforce .. " lol " .. self.yforce)
 							value.body:applyForce(self.xforce,self.yforce)
 						else
-							self.ratio = math.abs(800/self.xforce)
+							self.ratio = math.abs(700/self.xforce)
 
 							if self.xforce > 0 then
-								self.xforce = 800
+								self.xforce = 700
 							else
-								self.xforce = -800
+								self.xforce = -700
 							end
 							
 							self.yforce = self.yforce*self.ratio
@@ -84,14 +84,14 @@ function Shock:fire(force)
 
 					else
 
-						if math.abs(self.xforce) > 800 then
+						if math.abs(self.xforce) > 700 then
 
-							self.ratio = math.abs(800/self.yforce)
+							self.ratio = math.abs(700/self.yforce)
 							
 							if self.yforce > 0 then
-								self.yforce = 800
+								self.yforce = 700
 							else
-								self.yforce = -800
+								self.yforce = -700
 							end
 							
 							self.xforce = self.xforce*self.ratio
@@ -99,12 +99,12 @@ function Shock:fire(force)
 							value.body:applyForce(self.xforce,self.yforce)
 						else
 
-							self.ratio = math.abs(800/self.yforce)
+							self.ratio = math.abs(700/self.yforce)
 							
 							if self.yforce > 0 then
-								self.yforce = 800
+								self.yforce = 700
 							else
-								self.yforce = -800
+								self.yforce = -700
 							end
 							
 							self.xforce = self.xforce*self.ratio
@@ -116,7 +116,7 @@ function Shock:fire(force)
 
 				print("-------")
 				print(self.xforce .. " lol " .. self.yforce)
-				value.body:applyForce(self.xforce, self.yforce)
+				value.body:applyLinearImpulse(self.xforce, self.yforce, self.x, self.y)
 
 			end
 		end
@@ -128,20 +128,20 @@ function Shock:fire(force)
 
 				self.vectorlength = math.sqrt((value.body:getX()-self.x)^2 + (value.body:getY() - self.y)^2)
 				self.xforce = (self.distancescale*self.force*((value.body:getX()-self.x)/self.vectorlength))
-				if self.xforce > 800 then
-					self.xforce = 800
+				if self.xforce > 700 then
+					self.xforce = 700
 				end
-				if self.xforce < -800 then
-					self.xforce = -800
+				if self.xforce < -700 then
+					self.xforce = -700
 				end
 				self.yforce = (self.distancescale*self.force*((value.body:getY() - self.y)/self.vectorlength))
-				if self.yforce > 800 then
-					self.yforce = 800
+				if self.yforce > 700 then
+					self.yforce = 700
 				end
-				if self.yforce < -800 then
-					self.yforce = -800
+				if self.yforce < -700 then
+					self.yforce = -700
 				end
-				value.body:applyForce(self.xforce, self.yforce)
+				value.body:applyLinearImpulse(self.xforce, self.yforce, self.x, self.y)
 			end
 		end
 
