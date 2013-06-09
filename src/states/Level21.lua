@@ -13,18 +13,23 @@ require("classes/portal")
 require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
+require("classes/overlay")
 
+Level20 = class("Level20", Level)
 
-Level10 = class("Level10", Level)
-
-function Level10:__init()
+function Level20:__init()
     self.__super.__init(self)
     self.force = 0
-    self.index = 10
-    self.string = {"Remember you can place Magnets, just press spacebar.", 200, 100}
+    self.index = 0
+    self.string = {"", 0, 0}
+    self.stringtimer = 0
+    self.mousetype = 1
+    self.feedback = false
+    self.feedbacktimer = 0.5
+    self.disabled = false
 end
 
-function Level10:load()
+function Level20:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -57,31 +62,25 @@ function Level10:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
+    local magnet = Magnet(world, 200, 300, 20, 150, 12, "Proton")
+    table.insert(self.magnet, magnet)
 
-    local el = Electron(world,130, 350)
+    local proton = Proton(world, 200, 100)
+    table.insert(self.proton, proton)
+
+    local el = Electron(world, 250, 550)
     table.insert(self.el, el)
+
+    local cwall = ColoredWall(world, 300, 500, 600, 10, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
 
     self.darkness = 0 
     self.maxElectrons = 1
     self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 1
-    self.magnetlimitp = 1
+    self.limitshock = 2
+    self.magnetlimitp = 2
     self.magnetlimite = 0
-
-    local cwall = ColoredWall(world, 512-15, 200, 30, 400, "static", 100, 100, 100, 50)
-    table.insert(self.walls, cwall)
-
-    local proton = Proton(world, 720, 120)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 750, 35)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 763, 100)
-    table.insert(self.proton, proton)
-
-    local proton = Proton(world, 900, 35)
-    table.insert(self.proton, proton)
+    self.down = false
 end

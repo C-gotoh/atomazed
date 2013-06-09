@@ -106,10 +106,10 @@ function MenuState:keypressed(key, u)
             stack:push(intro)
         elseif self.index == 2 then 
             if love.filesystem.exists("save.lua") then
-            chunk = love.filesystem.load( "save.lua" )
-            chunk()
-            stack:push(levels[saved.saves])
-            else
+                chunk = love.filesystem.load( "save.lua" )
+                chunk()
+                stack:push(levels[saved.saves])
+                stack:current():load()
             end
         elseif self.index == 3 then
             love.event.push("quit")

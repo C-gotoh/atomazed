@@ -11,6 +11,10 @@ function LevelEnd:load()
     self.index = 2
     self.shades = 250
     self.runner = 0
+
+    local save = {}
+    save.saves = 11
+    success = love.filesystem.write( "save.lua", table.show(save, "saved"))
 end
 
 function LevelEnd:update(dt)
@@ -33,10 +37,8 @@ function LevelEnd:update(dt)
     if self.runner < 0 then 
         if self.index == 1 then
             stack:pop()
-            stack:pop()
             stack:current():load()
         elseif self.index == 2 then
-            stack:pop()
             stack:pop()
             stack:push(levels[1])
         elseif self.index == 3 then

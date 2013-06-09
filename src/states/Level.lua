@@ -24,7 +24,8 @@ function Level:__init()
     self.stringtimer = 0
     self.mousetype = 1
     self.feedback = false
-    self.feedbacktimer = 0
+    self.feedbacktimer = 0.5
+    self.disabled = false
 end
 
 function Level:load()
@@ -71,7 +72,7 @@ function Level:load()
     el.body:setLinearVelocity(0, 800)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 10, 10, 10, 20)
+    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
@@ -140,7 +141,7 @@ function Level:update(dt)
     end
 
     if love.mouse.isDown("l") then
-        self.force = self.force + dt
+        self.force = self.force + dt * 0.85
         self.down = true
         if self.force > 1 then
             self.force = 1
@@ -185,6 +186,7 @@ function Level:draw()
             end
         end
     end
+    drawBar(self.force, self.disabled, self.mousetype)
     drawStats()
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
@@ -208,7 +210,8 @@ function Level:draw()
     end
     if self.feedback == true then
         love.graphics.setColor(200, 50, 0, 200*(1-self.feedbacktimer))
-        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 20/(1-self.feedbacktimer))
+        print(self.feedbacktimer)
+        love.graphics.circle("line", love.mouse.getX(), love.mouse.getY(), (20*(1-self.feedbacktimer)),100)
     end
 end
 
@@ -230,6 +233,15 @@ function Level:keypressed(key, u)
             self.mousetype = 1
         end
     end
+    if key == "a" then
+        local int = self.index-1
+        stack:pop()
+        stack:push(levels[int])
+    elseif key == "d" then
+        local int = self.index+1
+        stack:pop()
+        stack:push(levels[int])
+    end
 end
 
 
@@ -242,12 +254,19 @@ function Level:mousepressed(x, y, button)
         end
     end
     if button == "l" then
+        if (self.mousetype == 1) and (self.limitshock == 0) then
+            self.feedback = true
+            self.disabled = true
+        end
+    end
+    if button == "l" then
         if (self.magnetlimitp > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
             self.magnetlimitp = self.magnetlimitp - 1
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
             self.feedback = true
+            self.disabled = true
         end
     elseif button == "r" then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
@@ -257,6 +276,7 @@ function Level:mousepressed(x, y, button)
             self.mousetype = 1
         elseif (self.magnetlimite == 0) and (self.mousetype == 2) then
             self.feedback = true
+            self.disabled = true
             self.mousetype = 1
         end
     end
