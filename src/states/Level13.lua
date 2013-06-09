@@ -62,6 +62,8 @@ function Level13:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
+    local magnet = Magnet(world, 200, 300, 20, 150, 12, "Proton")
+    table.insert(self.magnet, magnet)
 
     local proton = Proton(world, 200, 100)
     table.insert(self.proton, proton)
