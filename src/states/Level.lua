@@ -231,6 +231,15 @@ function Level:keypressed(key, u)
             self.mousetype = 1
         end
     end
+    if key == "a" then
+        local int = self.index-1
+        stack:pop()
+        stack:push(levels[int])
+    elseif key == "d" then
+        local int = self.index+1
+        stack:pop()
+        stack:push(levels[int])
+    end
 end
 
 
@@ -248,6 +257,9 @@ function Level:mousepressed(x, y, button)
             table.insert(self.magnet, magnet)
             self.magnetlimitp = self.magnetlimitp - 1
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
+            self.feedback = true
+        end
+        if (self.mousetype == 1) and (self.limitshock == 0) then
             self.feedback = true
         end
     elseif button == "r" then
