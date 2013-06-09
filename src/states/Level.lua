@@ -140,7 +140,7 @@ function Level:update(dt)
     end
 
     if love.mouse.isDown("l") then
-        self.force = self.force + dt
+        self.force = self.force + dt * 0.85
         self.down = true
         if self.force > 1 then
             self.force = 1
@@ -185,6 +185,7 @@ function Level:draw()
             end
         end
     end
+    drawBar(self.force)
     drawStats()
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
