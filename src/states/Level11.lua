@@ -21,7 +21,7 @@ function Level11:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 11
-    self.string = {"The shocking truth.", 200, 100}
+    self.string = {"More Objects!", 500, 50}
 end
 
 function Level11:load()
@@ -57,20 +57,63 @@ function Level11:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    self.darkness = 0 
-    self.maxElectrons = 1
-    self.minElectrons = 0
-    self.endtimer = 0
-
-    self.limitshock = 0
-    self.magnetlimitp = 1
-    self.magnetlimite = 0
-
-    local proton = Proton(world, 650, 350)
+    local proton = Proton(world, 580, 400)
+    proton.body:setLinearVelocity(0, 10)
     table.insert(self.proton, proton)
 
-    local el = Electron(world,250, 350)
+    local proton = Proton(world, 580, 400)
+    proton.body:setLinearVelocity(200, 200)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 733, 434)
+    proton.body:setLinearVelocity(0, 10)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 769, 315)
+    proton.body:setLinearVelocity(0, 10)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 539, 256)
+    proton.body:setLinearVelocity(0, 10)
+    table.insert(self.proton, proton)
+
+
+    local proton = Proton(world, 583, 431)
+    proton.body:setLinearVelocity(0, 10)
+    table.insert(self.proton, proton)
+
+
+
+    local el = Electron(world, 213, 200)
+    proton.body:setLinearVelocity(0, 5)
     table.insert(self.el, el)
 
+    local el = Electron(world, 300, 300)
+    proton.body:setLinearVelocity(0, 5)
+    table.insert(self.el, el)
 
+    local el = Electron(world, 403, 50)
+    proton.body:setLinearVelocity(0, 5)
+    table.insert(self.el, el)
+
+    local el = Electron(world, 303, 500)
+    proton.body:setLinearVelocity(0, 5)
+    table.insert(self.el, el)
+
+    local el = Electron(world, 203, 100)
+    proton.body:setLinearVelocity(0, 5)
+    table.insert(self.el, el)
+
+    local el = Electron(world, 263, 160)
+    proton.body:setLinearVelocity(0, 5)
+    table.insert(self.el, el)
+
+    self.darkness = 0 
+    self.maxElectrons = 6
+    self.minElectrons = 2
+    self.endtimer = 0
+
+    self.limitshock = 3
+    self.magnetlimitp = 0
+    self.magnetlimite = 0
 end

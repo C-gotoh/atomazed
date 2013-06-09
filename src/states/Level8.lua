@@ -21,7 +21,7 @@ function Level8:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 8
-    self.string = {"This will take some time!", 500, 50}
+    self.string = {"Use the Portal... \n It's a one way ticket", 330, 320}
 end
 
 function Level8:load()
@@ -57,32 +57,48 @@ function Level8:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
 
-    local magnet = Magnet(world, 600, 550, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    local proton = Proton(world, 800, 500)
+    local proton = Proton(world, 850, 400)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 100, 50)
+    local proton = Proton(world, 900, 300)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 850, 200)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local el = Electron(world, 300, 200)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 50)
+    local el = Electron(world, 300, 400)
+    el.body:setLinearVelocity(0, 0)
+    table.insert(self.el, el)
+
+    local el = Electron(world, 300, 300)
+    el.body:setLinearVelocity(0, 0)
+    table.insert(self.el, el)
+
+    local el = Electron(world, 200, 300)
+    el.body:setLinearVelocity(0, 0)
+    table.insert(self.el, el)
+
+    local cwall = ColoredWall(world, 640, 300, 60, 600, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
-    local cwall = ColoredWall(world, 600, 500, 50, 200, "static", 100, 100, 100, 50)
-    table.insert(self.walls, cwall)
+    local portal = Portal(world, 500, 300, 800, 400)
+    table.insert(self.portal, portal)
 
     self.darkness = 0 
-    self.maxElectrons = 1
-    self.minElectrons = 0
+    self.maxElectrons = 4
+    self.minElectrons = 1
     self.endtimer = 0
 
-    self.limitshock = 4
-    self.magnetlimitp = 0
+    self.limitshock = 5
+    self.magnetlimitp = 1
     self.magnetlimite = 0
+
 end

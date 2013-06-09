@@ -15,16 +15,16 @@ require("classes/explosion")
 require("classes/shockeffect")
 
 
-Level24 = class("Level24", Level)
+Level18 = class("Level18", Level)
 
-function Level24:__init()
+function Level18:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 11
     self.string = {"They call it the square.", 200, 100}
 end
 
-function Level24:load()
+function Level18:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)

@@ -13,18 +13,23 @@ require("classes/portal")
 require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
+require("classes/overlay")
 
+Level16 = class("Level16", Level)
 
-Level23 = class("Level23", Level)
-
-function Level23:__init()
+function Level16:__init()
     self.__super.__init(self)
     self.force = 0
-    self.index = 11
-    self.string = {"It is resisting!", 200, 100}
+    self.index = 16
+    self.string = {"", 0, 0}
+    self.stringtimer = 0
+    self.mousetype = 1
+    self.feedback = false
+    self.feedbacktimer = 0.5
+    self.disabled = false
 end
 
-function Level23:load()
+function Level16:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -57,24 +62,31 @@ function Level23:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
+    local el = Electron(world, 200, 150)
+    table.insert(self.el, el)
+
+    local portal = Portal(world, 400, 350, 850, 450)
+    table.insert(self.portal, portal)
+
+    local proton = Proton(world, 750, 570)
+    table.insert(self.proton, proton)
+
+    local cwall = ColoredWall(world, 512, 500, 10, 210, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+    cwall = ColoredWall(world, 768, 400, 502, 10, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+    cwall = ColoredWall(world, 850, 550, 10, 160, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+    cwall = ColoredWall(world, 850, 420, 10, 30, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+
     self.darkness = 0 
-    self.maxElectrons = 1
+    self.maxElectrons = 2
     self.minElectrons = 0
     self.endtimer = 0
 
     self.limitshock = 1
     self.magnetlimitp = 0
-    self.magnetlimite = 0
-
-    local el = Electron(world,250, 350)
-    table.insert(self.el, el)
-
-    local proton = Proton(world, 500, 300)
-    table.insert(self.proton, proton)
-
-    local magnet = Magnet(world, 400, 300, 20, 150, 12, "Proton")
-    table.insert(self.magnet, magnet)
-
-    local magnet = Magnet(world, 600, 300, 20, 150, 12, "Proton")
-    table.insert(self.magnet, magnet)
+    self.magnetlimite = 1
+    self.down = false
 end

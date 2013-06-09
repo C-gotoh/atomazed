@@ -10,7 +10,6 @@ require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
 
-require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
 
@@ -21,7 +20,7 @@ function Level6:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 6
-    self.string = {"Use the Portal... \n It's a one way ticket", 330, 320}
+    self.string = {"This Way -->", 400, 270}
 end
 
 function Level6:load()
@@ -57,12 +56,13 @@ function Level6:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
+    local magnet = Magnet(world, 500, 550, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
 
-    local proton = Proton(world, 850, 400)
-    proton.body:setLinearVelocity(0, 0)
-    table.insert(self.proton, proton)
+    local magnet = Magnet(world, 500, 50, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
 
-    local proton = Proton(world, 900, 300)
+    local proton = Proton(world, 800, 100)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
@@ -70,35 +70,26 @@ function Level6:load()
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 300, 200)
+    local proton = Proton(world, 800, 300)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local el = Electron(world, 50, 50)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local el = Electron(world, 300, 400)
+    local el = Electron(world, 100, 100)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local el = Electron(world, 300, 300)
-    el.body:setLinearVelocity(0, 0)
-    table.insert(self.el, el)
-
-    local el = Electron(world, 200, 300)
-    el.body:setLinearVelocity(0, 0)
-    table.insert(self.el, el)
-
-    local cwall = ColoredWall(world, 640, 300, 60, 600, "static", 100, 100, 100, 50)
-    table.insert(self.walls, cwall)
-
-    local portal = Portal(world, 500, 300, 800, 400)
-    table.insert(self.portal, portal)
 
     self.darkness = 0 
-    self.maxElectrons = 4
-    self.minElectrons = 1
+    self.maxElectrons = 2
+    self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 5
-    self.magnetlimitp = 1
+    self.limitshock = 3
+    self.magnetlimitp = 0
     self.magnetlimite = 0
 
 end

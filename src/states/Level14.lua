@@ -15,12 +15,12 @@ require("classes/explosion")
 require("classes/shockeffect")
 require("classes/overlay")
 
-Level21 = class("Level21", Level)
+Level14 = class("Level14", Level)
 
-function Level21:__init()
+function Level14:__init()
     self.__super.__init(self)
     self.force = 0
-    self.index = 0
+    self.index = 14
     self.string = {"", 0, 0}
     self.stringtimer = 0
     self.mousetype = 1
@@ -29,7 +29,7 @@ function Level21:__init()
     self.disabled = false
 end
 
-function Level21:load()
+function Level14:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -62,25 +62,36 @@ function Level21:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 200, 300, 20, 150, 12, "Proton")
-    table.insert(self.magnet, magnet)
-
-    local proton = Proton(world, 200, 100)
+    local proton = Proton(world, 50, 550)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 250, 550)
+    local el = Electron(world, 450, 250)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 300, 500, 600, 10, "static", 100, 100, 100, 50)
+    local el = Electron(world, 900, 50)
+    table.insert(self.el, el)
+
+    local portal = Portal(world, 350, 80, 900, 550)
+    table.insert(self.portal, portal)
+
+    local portal = Portal(world, 600, 250, 400, 350)
+    table.insert(self.portal, portal)
+
+    local proton = Proton(world, 800, 450)
+    table.insert(self.proton, proton)
+
+    local cwall = ColoredWall(world, 512, 300, 10, 600, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+    cwall = ColoredWall(world, 512, 300, 1024, 10, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
-    self.maxElectrons = 1
+    self.maxElectrons = 2
     self.minElectrons = 0
     self.endtimer = 0
 
     self.limitshock = 2
-    self.magnetlimitp = 2
+    self.magnetlimitp = 0
     self.magnetlimite = 0
     self.down = false
 end

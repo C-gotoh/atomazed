@@ -49,7 +49,7 @@ end
 
 function LevelEnd:draw()
     love.graphics.setColor(255, 255, 255, self.shades)
-    love.graphics.draw(screenshot, 0, 0)
+    --love.graphics.draw(screenshot, 0, 0)
 
     love.graphics.setColor(255, 255, 255, 255*self.runner)
     love.graphics.setFont(resources.fonts.big)

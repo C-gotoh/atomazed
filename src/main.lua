@@ -6,8 +6,6 @@ require("core/helper")
 require("states/Level")
 require("states/Level1")
 require("states/Level2")
-require("states/Level2_1")
-require("states/Level2_2")
 require("states/Level3")
 require("states/Level4")
 require("states/Level5")
@@ -17,11 +15,11 @@ require("states/Level8")
 require("states/Level9")
 require("states/Level10")
 require("states/Level11")
-require("states/Level20")
-require("states/Level21")
-require("states/Level22")
-require("states/Level23")
-require("states/Level24")
+require("states/Level12")
+require("states/Level13")
+require("states/Level14")
+require("states/Level15")
+require("states/Level16")
 require("states/LevelEnd")
 require("states/MenuState")
 require("states/GameOverState")
@@ -55,8 +53,6 @@ function love.load()
     levels = {}
     level1 = Level1()
     level2 = Level2()
-    level2_1 = Level2_1()
-    level2_2 = Level2_2()
     level3 = Level3()
     level4 = Level4()
     level5 = Level5()
@@ -66,11 +62,11 @@ function love.load()
     level9 = Level9()
     level10 = Level10()
     level11 = Level11()
-    level20 = Level20()
-    level21 = Level21()
-    level22 = Level22()
-    level23 = Level23()
-    level24 = Level24()
+    level12 = Level12()
+    level13 = Level13()
+    level14 = Level14()
+    level15 = Level15()
+    level16 = Level16()
 
     levelend = LevelEnd()
 
@@ -85,8 +81,13 @@ function love.load()
     levels[9] = level9
     levels[10] = level10
     levels[11] = level11
+    levels[12] = level12
+    levels[13] = level13
+    levels[14] = level14
+    levels[15] = level15
+    levels[16] = level16
 
-    levels[23] = levelend
+    levels[17] = levelend
     stack:push(menu)
 end
 

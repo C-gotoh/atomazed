@@ -20,7 +20,7 @@ function Level4:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 4
-    self.string = {"This Way -->", 400, 270}
+    self.string = {"", 750, 400}
 end
 
 function Level4:load()
@@ -56,40 +56,54 @@ function Level4:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 500, 550, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    local magnet = Magnet(world, 500, 50, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    local proton = Proton(world, 800, 100)
+    local proton = Proton(world, 800, 480)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local proton = Proton(world, 850, 200)
+    local proton = Proton(world, 850, 430)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local proton = Proton(world, 800, 300)
+    local proton = Proton(world, 831, 568)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 50, 50)
+    local proton = Proton(world, 730, 560)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 931, 360)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 621, 240)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local proton = Proton(world, 730, 25)
+    proton.body:setLinearVelocity(0, 0)
+    table.insert(self.proton, proton)
+
+    local el = Electron(world, 400, 300)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local el = Electron(world, 100, 100)
+    local el = Electron(world, 300, 300)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
+    local cwall = ColoredWall(world, 512, 0, 20, 500, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+
+    local cwall = ColoredWall(world, 512, 600, 20, 500, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
 
     self.darkness = 0 
-    self.maxElectrons = 2
+    self.maxElectrons = 1
     self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 3
+    self.limitshock = 2
     self.magnetlimitp = 0
     self.magnetlimite = 0
-
 end

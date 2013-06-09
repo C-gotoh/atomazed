@@ -10,6 +10,7 @@ require("classes/magnet")
 require("classes/shock")
 require("classes/portal")
 
+require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
 
@@ -20,7 +21,7 @@ function Level7:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 7
-    self.string = {"Think Different", 250, 100}
+    self.string = {"Even more tricky...", 200, 100}
 end
 
 function Level7:load()
@@ -57,20 +58,8 @@ function Level7:load()
     table.insert(self.walls, wall)
 
 
-    local magnet = Magnet(world, 50, 500, 20, 150, 12, "Proton")
-    table.insert(self.magnet, magnet)
-
-    local proton = Proton(world, 400, 500)
-    proton.body:setLinearVelocity(0, 0)
-    table.insert(self.proton, proton)
-
-    local el = Electron(world, 100, 50)
-    el.body:setLinearVelocity(0, 0)
+    local el = Electron(world,50, 300)
     table.insert(self.el, el)
-
-    local cwall = ColoredWall(world, 200, 200, 20, 400, "static", 100, 100, 100, 50)
-    table.insert(self.walls, cwall)
-
 
     self.darkness = 0 
     self.maxElectrons = 1
@@ -81,4 +70,21 @@ function Level7:load()
     self.magnetlimitp = 0
     self.magnetlimite = 0
 
+    local cwall = ColoredWall(world, 270, 600, 30, 400, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+        
+    local cwall = ColoredWall(world, 270, 600, 30, 500, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+
+    local cwall = ColoredWall(world, 650, 200, 30, 400, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+
+    local magnet = Magnet(world, 270, 350, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    local magnet = Magnet(world, 650, 400, 20, 200, 12, "Electron")
+    table.insert(self.magnet, magnet)
+
+    local proton = Proton(world, 840, 330)
+    table.insert(self.proton, proton)
 end
