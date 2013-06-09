@@ -1,7 +1,7 @@
 IntroState = class("IntroState", State)
 
 function IntroState:__init()
-	self.font = resources.fonts.forty
+	self.font = resources.fonts.thirty
 end
 
 function IntroState:load()
@@ -11,7 +11,12 @@ end
 function IntroState:draw()
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.print("Press \"R\" for Restart", 50, 50 )
-	love.graphics.print("Press left mousebutton to create a shockwave", 50, 150 )	
+	love.graphics.setColor(200, 50, 0, 255)
+	love.graphics.print("Press 'Left mousebutton' to create a \n shockwave or to place a Proton Tower", 50, 150 )	
+	love.graphics.setColor(50, 200, 50, 255)
+	love.graphics.print("Press 'Right mousebutton' to create a \n shockwave or to place a Electron Tower", 50, 250 )
+	love.graphics.setColor(0, 50, 200, 255)
+	love.graphics.print("Press middle 'Mousebutton' or 'Space' \n to switch Mousemode  ", 50, 350 )	
 end
 
 function IntroState:keypressed(key, button)
