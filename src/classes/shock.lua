@@ -14,6 +14,8 @@ function Shock:fire(force)
 		end
 		self.fireradius = 200
 
+		self.maxforce = 500
+
 		shockeffect = Shockeffect(world, self.x, self.y, self.force, self.fireradius)
 
 		table.insert(stack:current().shockeffect, shockeffect)
@@ -52,29 +54,29 @@ function Shock:fire(force)
 				-- self.yforce = self.yforce * 100
 
 				print("yforce " .. self.yforce)
-				if math.abs(self.xforce) > 700 or math.abs(self.yforce) > 700 then
+				if math.abs(self.xforce) > self.maxforce or math.abs(self.yforce) > self.maxforce then
 
 					if math.abs(self.xforce) > math.abs(self.yforce) then
 
-						if math.abs(self.yforce) > 700 then
-							self.ratio = math.abs(700/self.xforce)
+						if math.abs(self.yforce) > self.maxforce then
+							self.ratio = math.abs(self.maxforce/self.xforce)
 
 							if self.xforce > 0 then
-								self.xforce = 700
+								self.xforce = self.maxforce
 							else
-								self.xforce = -700
+								self.xforce = -self.maxforce
 							end
 
 							self.yforce = self.yforce*self.ratio
 							print(self.xforce .. " lol " .. self.yforce)
 							value.body:applyForce(self.xforce,self.yforce)
 						else
-							self.ratio = math.abs(700/self.xforce)
+							self.ratio = math.abs(self.maxforce/self.xforce)
 
 							if self.xforce > 0 then
-								self.xforce = 700
+								self.xforce = self.maxforce
 							else
-								self.xforce = -700
+								self.xforce = -self.maxforce
 							end
 							
 							self.yforce = self.yforce*self.ratio
@@ -84,14 +86,14 @@ function Shock:fire(force)
 
 					else
 
-						if math.abs(self.xforce) > 700 then
+						if math.abs(self.xforce) > self.maxforce then
 
-							self.ratio = math.abs(700/self.yforce)
+							self.ratio = math.abs(self.maxforce/self.yforce)
 							
 							if self.yforce > 0 then
-								self.yforce = 700
+								self.yforce = self.maxforce
 							else
-								self.yforce = -700
+								self.yforce = -self.maxforce
 							end
 							
 							self.xforce = self.xforce*self.ratio
@@ -99,12 +101,12 @@ function Shock:fire(force)
 							value.body:applyForce(self.xforce,self.yforce)
 						else
 
-							self.ratio = math.abs(700/self.yforce)
+							self.ratio = math.abs(self.maxforce/self.yforce)
 							
 							if self.yforce > 0 then
-								self.yforce = 700
+								self.yforce = self.maxforce
 							else
-								self.yforce = -700
+								self.yforce = -self.maxforce
 							end
 							
 							self.xforce = self.xforce*self.ratio
@@ -128,18 +130,18 @@ function Shock:fire(force)
 
 				self.vectorlength = math.sqrt((value.body:getX()-self.x)^2 + (value.body:getY() - self.y)^2)
 				self.xforce = (self.distancescale*self.force*((value.body:getX()-self.x)/self.vectorlength))
-				if self.xforce > 700 then
-					self.xforce = 700
+				if self.xforce > self.maxforce then
+					self.xforce = self.maxforce
 				end
-				if self.xforce < -700 then
-					self.xforce = -700
+				if self.xforce < -self.maxforce then
+					self.xforce = -self.maxforce
 				end
 				self.yforce = (self.distancescale*self.force*((value.body:getY() - self.y)/self.vectorlength))
-				if self.yforce > 700 then
-					self.yforce = 700
+				if self.yforce > self.maxforce then
+					self.yforce = self.maxforce
 				end
-				if self.yforce < -700 then
-					self.yforce = -700
+				if self.yforce < -self.maxforce then
+					self.yforce = -self.maxforce
 				end
 				value.body:applyLinearImpulse(self.xforce, self.yforce, self.x, self.y)
 			end
