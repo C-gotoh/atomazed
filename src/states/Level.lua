@@ -14,7 +14,6 @@ require("classes/tail")
 require("classes/explosion")
 require("classes/shockeffect")
 
-
 Level = class("Level", State)
 
 function Level:__init()
@@ -189,6 +188,18 @@ function Level:draw()
         love.graphics.setColor(255, 255, 255, 255)
         love.graphics.setFont(resources.fonts.thirty)
         love.graphics.print(self.string[1], self.string[2], self.string[3])
+    end
+    if self.mousetype == 2 then
+        love.graphics.setColor(255, 255, 255,  15)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 25)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 20)
+        love.graphics.setColor(255, 255, 255, 15)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 20)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 15)
+        love.graphics.setColor(255, 255, 255, 15)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 15)
+        love.graphics.setColor(255, 255, 255, 15)
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 8)
     end
 end
 

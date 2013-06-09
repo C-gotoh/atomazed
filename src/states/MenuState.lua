@@ -2,6 +2,23 @@ require("core/resources")
 require("core/helper")
 require("core/state")
 
+require("core/helper")
+require("core/physicshelper")
+require("core/state")
+
+require("classes/wall")
+require("classes/coloredwall")
+require("classes/electron")
+require("classes/proton")
+require("classes/magnet")
+require("classes/shock")
+require("classes/portal")
+
+require("classes/tail")
+require("classes/explosion")
+require("classes/shockeffect")
+
+
 MenuState = class("MenuState", State)
 
 function MenuState:__init()
@@ -14,20 +31,20 @@ end
 
 function MenuState:load()
     world = love.physics.newWorld()
-    magnet = Magnet(world, love.graphics.getWidth() / 2 + 100, love.graphics.getHeight()/3, 20, 150, 12, "Electron")
-    magnet2 = Magnet(world, love.graphics.getWidth() / 2  -100, love.graphics.getHeight()/3, 20, 150, 12, "Electron")
-    self.el = Electron(world, 340, 150)
-    self.el.body:setLinearVelocity(0, 50)
+    self.magnet = Magnet(world, love.graphics.getWidth() / 2 + 100, love.graphics.getHeight()/3, 20, 150, 5, "Electron")
+    self.magnet2 = Magnet(world, love.graphics.getWidth() / 2  -100, love.graphics.getHeight()/3, 20, 150, 5, "Electron")
+    self.el = Electron(world, 512, 200)
+    self.el.body:setLinearVelocity(90, -90)
     self.index = 1
     love.graphics.setFont(self.font)
 end
 
 
 function MenuState:update(dt)
-    magnet:addForce(self.el, dt)
-    magnet2:addForce(self.el, dt)
-    magnet:update()
-    magnet2:update()
+    self.magnet:addForce(self.el, dt)
+    self.magnet2:addForce(self.el, dt)
+    self.magnet:update(dt)
+    self.magnet2:update(dt)
     world:update(dt)
     self.runner = self.runner + dt/10
     if self.runner > 0.1 then
@@ -64,8 +81,8 @@ function MenuState:draw()
         love.graphics.print(text, x, 450, 0, scale-0.25, scale, self.font:getWidth(text)/2, self.font:getHeight(text)/2)
     end
     self.el:draw()
-    magnet:draw()
-    magnet2:draw()
+    self.magnet:draw()
+    self.magnet2:draw()
 end
 
 
