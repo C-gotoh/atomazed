@@ -20,7 +20,7 @@ Level10 = class("Level10", Level)
 function Level10:__init()
     self.__super.__init(self)
     self.force = 0
-    self.index = 1
+    self.index = 10
     self.string = {"Repulsion can be a good thing.", 100, 450}
 end
 

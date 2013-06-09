@@ -20,7 +20,7 @@ Level9 = class("Level9", Level)
 function Level9:__init()
     self.__super.__init(self)
     self.force = 0
-    self.index = 1
+    self.index = 9
     self.string = {"More Objects!", 500, 50}
 end
 
