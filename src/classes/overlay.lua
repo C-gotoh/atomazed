@@ -20,7 +20,7 @@ function drawStats()
 
 	x = love.graphics.getWidth() - 30
 	love.graphics.setColor(255,255,255,200)
-	love.graphics.print(stack:current().magnetlimitp, x - 25, 13)
+	love.graphics.print(stack:current().magnetlimite, x - 25, 13)
 
 	love.graphics.setColor(56, 222, 255, 80)
 	love.graphics.circle("fill", x, 30, 10, 100)
