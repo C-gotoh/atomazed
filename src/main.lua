@@ -31,7 +31,7 @@ function love.load()
     resources:addFont("fifty", "data/font/Audiowide-Regular.ttf", 58)
     
     resources:addFont("default", "data/font/Audiowide-Regular.ttf", 18)
-    resources:addFont("big", "data/font/Audiowide-Regular.ttf", 58)
+    resources:addFont("big", "data/font/Audiowide-Regular.ttf", 50)
     resources:addImage("particle", "data/images/particle.png", 60)
 
     resources:load()
@@ -44,7 +44,7 @@ function love.load()
     credit = CreditsState()
     intro = IntroState()
     levels = {}
-    level1 = Level1()
+    level1 = Level10()
     level2 = Level2()
     level3 = Level3()
     level4 = Level4()
