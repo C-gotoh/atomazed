@@ -2,11 +2,11 @@ function drawStats()
 	
 	local x = love.graphics.getWidth() - 170
 	
+	love.graphics.setColor(255,255,255,200)	
 	love.graphics.setFont(resources.fonts.twenty)
 	love.graphics.print(stack:current().limitshock, x - 33, 17)
 
 	-- draws Black White Circle
-	love.graphics.setColor(255,255,255,200)
 	love.graphics.circle("line", x, 30, 10, 100)
 	love.graphics.circle("line", x, 30, 7, 100)
 	love.graphics.circle("line", x, 30, 4, 100)	
