@@ -85,5 +85,4 @@ function Level8:load()
     self.limitshock = 4
     self.magnetlimitp = 0
     self.magnetlimite = 0
-
 end

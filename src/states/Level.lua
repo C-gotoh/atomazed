@@ -190,8 +190,8 @@ function Level:draw()
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
     if self.stringtimer < 6 then
-        love.graphics.setColor(255, 255, 255, 255)
-        love.graphics.setFont(resources.fonts.thirty)
+        love.graphics.setColor(255, 255, 255, 120)
+        love.graphics.setFont(resources.fonts.twentyfive)
         love.graphics.print(self.string[1], self.string[2], self.string[3])
     end
     if self.mousetype == 2 then
