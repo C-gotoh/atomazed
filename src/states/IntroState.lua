@@ -47,9 +47,9 @@ function IntroState:draw()
 	love.graphics.setColor(255, 255, 255, 255)
 	love.graphics.print("Shockwave", 800, 100 )	
 	love.graphics.setColor(200, 50, 0, 255)
-	love.graphics.print("Protontower", 800, 150 )	
+	love.graphics.print("Protonmagnet", 800, 150 )	
 	love.graphics.setColor(0, 50, 200, 255)
-	love.graphics.print("Electrontower", 800, 200 )	
+	love.graphics.print("Electronmagnet", 800, 200 )	
 end
 
 function IntroState:keypressed(key, button)
