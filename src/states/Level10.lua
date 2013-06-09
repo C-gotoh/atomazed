@@ -58,7 +58,7 @@ function Level10:load()
     table.insert(self.walls, wall)
 
 
-    local el = Electron(world,100, 350)
+    local el = Electron(world,130, 350)
     table.insert(self.el, el)
 
     self.darkness = 0 
