@@ -15,9 +15,9 @@ require("classes/explosion")
 require("classes/shockeffect")
 require("classes/overlay")
 
-Level20 = class("Level20", Level)
+Level21 = class("Level21", Level)
 
-function Level20:__init()
+function Level21:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 0
@@ -29,7 +29,7 @@ function Level20:__init()
     self.disabled = false
 end
 
-function Level20:load()
+function Level21:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
