@@ -53,7 +53,7 @@ function love.load()
     credit = CreditsState()
     intro = IntroState()
     levels = {}
-    level1 = Level24()
+    level1 = Level1()
     level2 = Level2()
     level2_1 = Level2_1()
     level2_2 = Level2_2()
