@@ -78,8 +78,8 @@ function Level:load()
     self.endtimer = 0
 
     self.limitshock = 3
-    self.limitmagnet1 = 1
-    self.limitmagnet2 = 1
+    self.magnetlimitp = 1
+    self.magnetlimite = 1
     self.down = false
 end
 
@@ -222,16 +222,16 @@ function Level:mousepressed(x, y, button)
         end
     end
     if button == "l" then
-        if (self.limitmagnet1 > 0) and (self.mousetype == 2) then
+        if (self.magnetlimitp > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
-            self.limitmagnet1 = self.limitmagnet1 - 1
+            self.magnetlimitp = self.magnetlimitp - 1
         end
     elseif button == "r" then
-        if (self.limitmagnet2 > 0) and (self.mousetype == 2) then
+        if (self.magnetlimite > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
             table.insert(self.magnet, magnet)
-            self.limitmagnet2 = self.limitmagnet2 - 2
+            self.magnetlimite = self.magnetlimite - 2
         end
     end
 end
