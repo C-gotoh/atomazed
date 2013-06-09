@@ -1,4 +1,4 @@
-# not named yet
+# Atomised
 
 A nice physics-puzzle with electrons and protons, some nice magnets and wormholes. 
 

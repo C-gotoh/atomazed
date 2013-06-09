@@ -3,9 +3,10 @@ Shock = class("Shock")
 function Shock:fire(force)
 
 
-	if stack:current().limitshock == 0 then
+	if stack:current().limitshock == 0 and stack:current().mousetype == 1 then
+		stack:current().feedback = true
 		return
-	else
+	elseif stack:current().mousetype == 1 then
 		stack:current().limitshock = stack:current().limitshock - 1
 		self.x = love.mouse.getX()
 		self.y = love.mouse.getY()
