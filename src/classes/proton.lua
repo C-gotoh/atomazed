@@ -8,7 +8,7 @@ function Proton:__init(world, x, y)
 	self.fixture:setRestitution(0.5)  
 	self.wobble = 1
 	self.fr = 100
-	self.force = 15
+	self.force = 13
 end
 
 function Proton:update(dt)
