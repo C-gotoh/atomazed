@@ -21,7 +21,7 @@ function Level1:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 1
-    self.string = {"Try to push those Electrons in the Protons", 100, 450}
+    self.string = {"Klick and hold to create shockwaves \ndestroy the blue electrons.", 100, 450}
 end
 
 function Level1:load()
