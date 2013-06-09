@@ -1,4 +1,4 @@
-# not named yet
+# Atomised
 
 A nice physics-puzzle with electrons and protons, some nice magnets and wormholes. 
 
@@ -39,3 +39,6 @@ All Rights Reserved.
 The following files and directories are not part of this project and were redistributed under their respective licenses:
 
 * data/font/SwankyandMooMoo.ttf, a google webfont. License added and available [here](http://code.google.com/p/googlefontdirectory/source/browse/swankyandmoomoo/OFL.txt?r=804d95648eb03ee2d13a4758f3e02df0546b7b2c)
+
+* data/font/Audiowide-Regular.ttf, a google webfont. License added and available [here](http://code.google.com/p/googlefontdirectory/source/browse/swankyandmoomoo/OFL.txt?r=804d95648eb03ee2d13a4758f3e02df0546b7b2c)
+

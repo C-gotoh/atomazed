@@ -23,6 +23,8 @@ function Level:__init()
     self.string = {"", 0, 0}
     self.stringtimer = 0
     self.mousetype = 1
+    self.feedback = false
+    self.feedbacktimer = 0
 end
 
 function Level:load()
@@ -138,13 +140,8 @@ function Level:update(dt)
     end
 
     if love.mouse.isDown("l") then
-        if self.mousetype == 1 then
-            self.force = self.force + dt
-            self.down = true
-        elseif self.mousetype == 2 then
-            self.down = false
-            self.force = 0
-        end
+        self.force = self.force + dt
+        self.down = true
         if self.force > 1 then
             self.force = 1
         end
@@ -171,6 +168,12 @@ function Level:update(dt)
     end
     if self.stringtimer < 3 then
         self.stringtimer = self.stringtimer + dt
+    end
+    if (self.feedback == true) and (self.feedbacktimer > 0) then
+        self.feedbacktimer = self.feedbacktimer - dt
+    elseif ((self.feedback == true) and (self.feedbacktimer <= 0)) then
+        self.feedbacktimer = 0.5
+        self.feedback = false
     end
 end
 
@@ -202,6 +205,10 @@ function Level:draw()
         love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 15)
         love.graphics.setColor(255, 255, 255, 15)
         love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 8)
+    end
+    if self.feedback == true then
+        love.graphics.setColor(200, 50, 0, 200*(1-self.feedbacktimer))
+        love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), 20/(1-self.feedbacktimer))
     end
 end
 
@@ -239,12 +246,16 @@ function Level:mousepressed(x, y, button)
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
             self.magnetlimitp = self.magnetlimitp - 1
+        elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
+            self.feedback = true
         end
     elseif button == "r" then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
             table.insert(self.magnet, magnet)
             self.magnetlimite = self.magnetlimite - 2
+        elseif (self.magnetlimite == 0) and (self.mousetype == 2) then
+            self.feedback = true
         end
     end
 end

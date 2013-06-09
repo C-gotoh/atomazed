@@ -72,7 +72,7 @@ function MenuState:draw()
     for i = 1, 4, 1 do
         local scale = 1
         local text = self.menupoints[i]
-        local x = i*(love.graphics.getWidth()/4.5)
+        local x = i*(love.graphics.getWidth()/4.5)-50
         if (i-1) == self.index then
             scale = self.wobble
         else
