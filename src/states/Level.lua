@@ -24,7 +24,7 @@ function Level:__init()
     self.stringtimer = 0
     self.mousetype = 1
     self.feedback = false
-    self.feedbacktimer = 0
+    self.feedbacktimer = 0.5
 end
 
 function Level:load()
@@ -251,14 +251,16 @@ function Level:mousepressed(x, y, button)
         end
     end
     if button == "l" then
+        if (self.mousetype == 1) and (self.limitshock == 0) then
+            self.feedback = true
+        end
+    end
+    if button == "l" then
         if (self.magnetlimitp > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
             self.magnetlimitp = self.magnetlimitp - 1
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
-            self.feedback = true
-        end
-        if (self.mousetype == 1) and (self.limitshock == 0) then
             self.feedback = true
         end
     elseif button == "r" then
