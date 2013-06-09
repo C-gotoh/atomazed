@@ -21,7 +21,7 @@ function Level8:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 8
-    self.string = {"Haha. This will take some time!", 500, 50}
+    self.string = {"This will take some time!", 500, 50}
 end
 
 function Level8:load()
@@ -78,7 +78,7 @@ function Level8:load()
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
-    self.maxElectrons = 22
+    self.maxElectrons = 1
     self.minElectrons = 0
     self.endtimer = 0
 

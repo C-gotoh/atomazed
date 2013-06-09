@@ -93,7 +93,7 @@ function Level6:load()
     table.insert(self.portal, portal)
 
     self.darkness = 0 
-    self.maxElectrons = 22
+    self.maxElectrons = 4
     self.minElectrons = 1
     self.endtimer = 0
 

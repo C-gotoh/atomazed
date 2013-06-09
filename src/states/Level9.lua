@@ -21,6 +21,7 @@ function Level9:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 1
+    self.string = {"More Objects!", 500, 50}
 end
 
 function Level9:load()
@@ -108,7 +109,7 @@ function Level9:load()
     table.insert(self.el, el)
 
     self.darkness = 0 
-    self.maxElectrons = 22
+    self.maxElectrons = 6
     self.minElectrons = 2
     self.endtimer = 0
 
