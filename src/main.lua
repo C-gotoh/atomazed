@@ -61,10 +61,8 @@ function love.load()
     level9 = Level9()
     level10 = Level10()
     level11 = Level11()
-    level12 = Level12()
-    level13 = Level13()
-    level14 = Level14()
-    level15 = Level15()
+    level20 = Level20()
+    level21 = Level21()
 
     levelend = LevelEnd()
 
@@ -79,12 +77,8 @@ function love.load()
     levels[9] = level9
     levels[10] = level10
     levels[11] = level11
-    levels[12] = level12
-    levels[13] = level13
-    levels[14] = level14
-    levels[15] = level15
 
-    levels[16] = levelend
+    levels[23] = levelend
     stack:push(menu)
 end
 

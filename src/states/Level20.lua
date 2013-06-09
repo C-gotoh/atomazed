@@ -15,12 +15,12 @@ require("classes/explosion")
 require("classes/shockeffect")
 require("classes/overlay")
 
-Level14 = class("Level14", Level)
+Level19 = class("Level19", Level)
 
-function Level14:__init()
+function Level19:__init()
     self.__super.__init(self)
     self.force = 0
-    self.index = 0
+    self.index = 12
     self.string = {"", 0, 0}
     self.stringtimer = 0
     self.mousetype = 1
@@ -29,7 +29,7 @@ function Level14:__init()
     self.disabled = false
 end
 
-function Level14:load()
+function Level19:load()
     self.all = {}
     self.walls = {}
     table.insert(self.all, self.walls)
@@ -62,27 +62,36 @@ function Level14:load()
     wall = Wall(world, 0, 300, 4, 600, "static")
     table.insert(self.walls, wall)
 
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Electron")
-    table.insert(self.magnet, magnet)
-
-    local proton = Proton(world, 400, 100)
-    proton.body:setLinearVelocity(0, 100)
+    local proton = Proton(world, 50, 550)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 100, 200)
-    el.body:setLinearVelocity(0, 800)
+    local el = Electron(world, 450, 250)
     table.insert(self.el, el)
 
-    local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 100, 100, 100, 50)
+    local el = Electron(world, 900, 50)
+    table.insert(self.el, el)
+
+    local portal = Portal(world, 350, 80, 900, 550)
+    table.insert(self.portal, portal)
+
+    local portal = Portal(world, 600, 250, 400, 350)
+    table.insert(self.portal, portal)
+
+    local proton = Proton(world, 800, 450)
+    table.insert(self.proton, proton)
+
+    local cwall = ColoredWall(world, 512, 300, 10, 600, "static", 100, 100, 100, 50)
+    table.insert(self.walls, cwall)
+    cwall = ColoredWall(world, 512, 300, 1024, 10, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
     self.darkness = 0 
-    self.maxElectrons = 22
-    self.minElectrons = -1
+    self.maxElectrons = 2
+    self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 3
-    self.magnetlimitp = 1
-    self.magnetlimite = 1
+    self.limitshock = 2
+    self.magnetlimitp = 0
+    self.magnetlimite = 0
     self.down = false
 end
