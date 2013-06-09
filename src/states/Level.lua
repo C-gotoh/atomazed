@@ -233,15 +233,15 @@ function Level:keypressed(key, u)
             self.mousetype = 1
         end
     end
-    if key == "a" then
-        local int = self.index-1
-        stack:pop()
-        stack:push(levels[int])
-    elseif key == "d" then
-        local int = self.index+1
-        stack:pop()
-        stack:push(levels[int])
-    end
+    -- if key == "a" then
+    --     local int = self.index-1
+    --     stack:pop()
+    --     stack:push(levels[int])
+    -- elseif key == "d" then
+    --     local int = self.index+1
+    --     stack:pop()
+    --     stack:push(levels[int])
+    -- end
 end
 
 

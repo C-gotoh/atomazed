@@ -58,3 +58,10 @@ function IntroState:keypressed(key, button)
 		stack:push(levels[1])
 	end
 end
+
+function IntroState:mousepressed(key, button)
+	if key then 
+		stack:pop()
+		stack:push(levels[1])
+	end
+end

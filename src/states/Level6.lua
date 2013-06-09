@@ -74,11 +74,11 @@ function Level6:load()
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
-    local el = Electron(world, 50, 50)
+    local el = Electron(world, 100, 200)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
-    local el = Electron(world, 100, 100)
+    local el = Electron(world, 130, 250)
     el.body:setLinearVelocity(0, 0)
     table.insert(self.el, el)
 
