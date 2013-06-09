@@ -25,6 +25,7 @@ function Level:__init()
     self.mousetype = 1
     self.feedback = false
     self.feedbacktimer = 0
+    self.disabled = false
 end
 
 function Level:load()
@@ -185,7 +186,7 @@ function Level:draw()
             end
         end
     end
-    drawBar(self.force)
+    drawBar(self.force, self.disabled)
     drawStats()
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
@@ -258,9 +259,11 @@ function Level:mousepressed(x, y, button)
             self.magnetlimitp = self.magnetlimitp - 1
         elseif (self.magnetlimitp == 0) and (self.mousetype == 2) then
             self.feedback = true
+            self.disabled = true
         end
         if (self.mousetype == 1) and (self.limitshock == 0) then
             self.feedback = true
+            self.disabled = true
         end
     elseif button == "r" then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
@@ -270,6 +273,7 @@ function Level:mousepressed(x, y, button)
             self.mousetype = 1
         elseif (self.magnetlimite == 0) and (self.mousetype == 2) then
             self.feedback = true
+            self.disabled = true
             self.mousetype = 1
         end
     end
