@@ -20,6 +20,7 @@ function Level7:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 7
+    self.string = {"Reversed Level 3 :)", 250, 100}
 end
 
 function Level7:load()

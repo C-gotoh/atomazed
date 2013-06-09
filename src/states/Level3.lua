@@ -20,6 +20,7 @@ function Level3:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 3
+    self.string = {"Tricky >:3", 750, 400}
 end
 
 function Level3:load()

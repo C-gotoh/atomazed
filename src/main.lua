@@ -16,6 +16,7 @@ require("states/Level9")
 require("states/MenuState")
 require("states/GameOverState")
 require("states/CreditsState")
+require("states/IntroState")
 
 
 function love.load()
@@ -40,6 +41,7 @@ function love.load()
     menu = MenuState()
     gameover = GameOverState()
     credit = CreditsState()
+    intro = IntroState()
     levels = {}
     level1 = Level1()
     level2 = Level2()

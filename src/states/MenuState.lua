@@ -87,7 +87,7 @@ function MenuState:keypressed(key, u)
         if self.index == 0 then
             stack:push(credit)
         elseif self.index == 1 then
-            stack:push(levels[1])
+            stack:push(intro)
         elseif self.index == 2 then 
             if love.filesystem.exists("save.lua") then
             chunk = love.filesystem.load( "save.lua" )

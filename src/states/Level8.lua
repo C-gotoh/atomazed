@@ -21,6 +21,7 @@ function Level8:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 8
+    self.string = {"Haha. This will take some time!", 500, 50}
 end
 
 function Level8:load()

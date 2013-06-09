@@ -21,6 +21,7 @@ function Level6:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 6
+    self.string = {"Use the Protal...", 400, 300}
 end
 
 function Level6:load()

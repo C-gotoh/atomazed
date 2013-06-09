@@ -20,6 +20,8 @@ Level = class("Level", State)
 function Level:__init()
     self.force = 0
     self.index = 0
+    self.string = {"", 0, 0}
+    self.stringtimer = 0
 end
 
 function Level:load()
@@ -73,6 +75,7 @@ function Level:load()
     self.maxElectrons = 22
     self.minElectrons = -1
     self.endtimer = 0
+    self.stringtimer = 0
 
     self.limitshock = 3
     self.limitmagnet1 = 0
@@ -162,6 +165,9 @@ function Level:update(dt)
         value[1].body:setLinearVelocity(unpack(value[4]))
         table.remove(self.positionQueue, index)
     end
+    if self.stringtimer < 3 then
+        self.stringtimer = self.stringtimer + dt
+    end
 end
 
 function Level:draw()
@@ -175,6 +181,11 @@ function Level:draw()
     self.darkness = ((self.maxElectrons-#self.el)/self.minElectrons)
     love.graphics.setColor(0, 0, 0, 0*self.darkness)
     love.graphics.rectangle("fill", 0, 0, 1024, 600)
+    if self.stringtimer < 6 then
+        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setFont(resources.fonts.thirty)
+        love.graphics.print(self.string[1], self.string[2], self.string[3])
+    end
 end
 
 function Level:restart()

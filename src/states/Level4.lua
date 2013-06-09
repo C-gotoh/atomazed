@@ -20,6 +20,7 @@ function Level4:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 4
+    self.string = {"This Way -->", 400, 270}
 end
 
 function Level4:load()

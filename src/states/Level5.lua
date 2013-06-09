@@ -21,6 +21,7 @@ function Level5:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 5
+    self.string = {"HansHardcore", 250, 100}
 end
 
 function Level5:load()
