@@ -20,7 +20,7 @@ function Level7:__init()
     self.__super.__init(self)
     self.force = 0
     self.index = 7
-    self.string = {"Reversed Level 3 :)", 250, 100}
+    self.string = {"Think Different", 250, 100}
 end
 
 function Level7:load()
@@ -57,10 +57,10 @@ function Level7:load()
     table.insert(self.walls, wall)
 
 
-    local magnet = Magnet(world, 250, 400, 20, 200, 12, "Proton")
+    local magnet = Magnet(world, 50, 500, 20, 150, 12, "Proton")
     table.insert(self.magnet, magnet)
 
-    local proton = Proton(world, 800, 500)
+    local proton = Proton(world, 400, 500)
     proton.body:setLinearVelocity(0, 0)
     table.insert(self.proton, proton)
 
@@ -77,7 +77,7 @@ function Level7:load()
     self.minElectrons = 0
     self.endtimer = 0
 
-    self.limitshock = 6
+    self.limitshock = 1
     self.magnetlimitp = 0
     self.magnetlimite = 0
 
