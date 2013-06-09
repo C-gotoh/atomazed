@@ -1,8 +1,6 @@
 Shock = class("Shock")
 
 function Shock:fire(force)
-
-
 	if stack:current().limitshock == 0 and stack:current().mousetype == 1 then
 		stack:current().feedback = true
 		return
