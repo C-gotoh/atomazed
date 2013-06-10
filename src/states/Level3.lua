@@ -143,7 +143,7 @@ function Level3:load()
 
 
     self.darkness = 0 
-    self.maxElectrons = 1
+    self.maxElectrons = 4
     self.minElectrons = 0
     self.endtimer = 0
 
