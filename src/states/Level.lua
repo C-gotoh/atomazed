@@ -95,6 +95,7 @@ function Level:update(dt)
             screenshot = love.graphics.newImage(canvas)
             local save = {}
             save.saves = self.index+1
+            love.filesystem.setIdentity("atomazed")
             success = love.filesystem.write( "save.lua", table.show(save, "saved"))
             local canvas = love.graphics.newScreenshot()
             screenshot = love.graphics.newImage(canvas)
