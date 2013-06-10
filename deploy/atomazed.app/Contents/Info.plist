@@ -19,7 +19,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.bunkerkids.atomazed</string>
+				<string>org.love2d.love-game</string>
 			</array>
 		</dict>
 		<dict>
@@ -40,7 +40,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Love.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.love2d.love</string>
+	<string>bacongamejam.Bunkerkids.atomazed</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -71,6 +71,7 @@
 	<string>SDLMain</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
 			<key>UTTypeConformsTo</key>
