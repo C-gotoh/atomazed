@@ -1,4 +1,4 @@
-require("core/resources")
+ require("core/resources")
 require("core/helper")
 require("core/state")
 
@@ -108,8 +108,10 @@ function MenuState:keypressed(key, u)
             if love.filesystem.exists("save.lua") then
                 chunk = love.filesystem.load( "save.lua" )
                 chunk()
-                stack:push(levels[saved.saves])
-                stack:current():load()
+                if saved then
+                    stack:push(levels[saved.saves])
+                    stack:current():load()
+                end
             end
         elseif self.index == 3 then
             love.event.push("quit")
