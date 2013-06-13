@@ -8,7 +8,6 @@ function Shock:fire(force)
 		self.x = love.mouse.getX()
 		self.y = love.mouse.getY()
 		self.force = force
-		print("force " .. self.force)
 		if self.force > 25 then
 			self.force = 25
 		end
@@ -27,33 +26,14 @@ function Shock:fire(force)
 				if self.distancescale < 0 then
 				self.distancescale = 0
 				end
-				print("distancescale " .. self.distancescale)
 				self.vectorlength = math.sqrt((value.body:getX()-self.x)^2 + (value.body:getY() - self.y)^2)
 
 				self.xforce = (self.distancescale*self.force*((value.body:getX()-self.x)/self.vectorlength))
 				self.xforce = self.xforce
 
-				-- if self.xforce > 6 then
-				--  	self.xforce = 6
-				-- end
-				-- if self.xforce < -6 then
-				-- 	self.xforce = -6
-				-- end
-				-- self.xforce = self.xforce * 100
-				print("xforce " .. self.xforce)
-				
 				self.yforce = (self.distancescale*self.force*((value.body:getY() - self.y)/self.vectorlength))
 				self.yforce = self.yforce 
 
-				-- if self.yforce > 6 then
-				--  	self.yforce = 6
-				-- end
-				-- if self.yforce < -6 then
-				-- 	self.yforce = -6
-				-- end
-				-- self.yforce = self.yforce * 100
-
-				print("yforce " .. self.yforce)
 				if math.abs(self.xforce) > self.maxforce or math.abs(self.yforce) > self.maxforce then
 
 					if math.abs(self.xforce) > math.abs(self.yforce) then
@@ -68,7 +48,6 @@ function Shock:fire(force)
 							end
 
 							self.yforce = self.yforce*self.ratio
-							print(self.xforce .. " lol " .. self.yforce)
 							value.body:applyForce(self.xforce,self.yforce)
 						else
 							self.ratio = math.abs(self.maxforce/self.xforce)
@@ -80,7 +59,6 @@ function Shock:fire(force)
 							end
 							
 							self.yforce = self.yforce*self.ratio
-							print(self.xforce .. " lol " .. self.yforce)
 							value.body:applyForce(self.xforce,self.yforce)
 						end
 
@@ -97,7 +75,6 @@ function Shock:fire(force)
 							end
 							
 							self.xforce = self.xforce*self.ratio
-							print(self.xforce .. " lol " .. self.yforce)
 							value.body:applyForce(self.xforce,self.yforce)
 						else
 
@@ -110,20 +87,16 @@ function Shock:fire(force)
 							end
 							
 							self.xforce = self.xforce*self.ratio
-							print(self.xforce .. " lol " .. self.yforce)
 							value.body:applyForce(self.xforce,self.yforce)
 						end
 					end
 				end
 
-				print("-------")
-				print(self.xforce .. " lol " .. self.yforce)
 				value.body:applyLinearImpulse(self.xforce, self.yforce, self.x, self.y)
 
 			end
 		end
 
-		print("//////////")
 		for index, value in pairs(stack:current().proton) do
 			if (distance(value.body:getX(),value.body:getY(),self.x,self.y) < self.fireradius) then
 				self.distancescale = (self.fireradius/(distance(value.body:getX(), value.body:getY(), self.x, self.y)))
