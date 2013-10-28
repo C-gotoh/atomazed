@@ -15,11 +15,11 @@ Developed @ BaconGameJam2013
 
 ## Usage
 
-Download the Folder 'GGJ2013'. To do that, clone this repository or download it as a zip from [github](https://github.com/C-gotoh/bacongamejam05).
+Download. To do that, clone this repository or download it as a zip from [github](https://github.com/C-gotoh/bacongamejam05).
 
 ### Linux
 
-Open a terminal, change into the directory 'GGJ2013' and run 
+Open a terminal, change into the directory you cloned into and run 
 
     make run
 
