@@ -11,7 +11,7 @@ build: clean
 	@cd src/ && zip -r ../game.love *
 
 run: build
-	@love game.love
+	@love08 game.love
 deploy: build
 	@cat love.exe game.love > deploy/love-0.8.0-win-x86/$(NAME).exe
 	@7z a deploy/builds/$(NAME)-win.zip deploy/love-0.8.0-win-x86/*
