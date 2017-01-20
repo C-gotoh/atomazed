@@ -36,14 +36,14 @@ function love.load()
     resources:addFont("thirty", "data/font/Audiowide-Regular.ttf", 25)
     resources:addFont("forty", "data/font/Audiowide-Regular.ttf", 32)
     resources:addFont("fifty", "data/font/Audiowide-Regular.ttf", 40)
-    
+
     resources:addFont("default", "data/font/Audiowide-Regular.ttf", 18)
     resources:addFont("big", "data/font/Audiowide-Regular.ttf", 50)
     resources:addImage("particle", "data/images/particle.png", 60)
 
     resources:load()
-    
-    love.graphics.setMode(1024, 600, false, true, 0) -- Fensteroberfläche
+
+    love.window.setMode(1024, 600) -- Fensteroberfläche
 
     stack = StackHelper()
     menu = MenuState()
@@ -98,7 +98,7 @@ end
 
 function love.draw()
     stack:draw()
-end 
+end
 
 function love.keypressed(key, u)
     stack:current():keypressed(key, u)

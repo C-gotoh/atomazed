@@ -45,7 +45,7 @@ function Level:load()
     table.insert(self.all, self.particles)
     self.shockeffect = {}
     table.insert(self.all, self.shockeffect)
-    
+
 
     love.graphics.setFont(resources.fonts.default)
     love.physics.setMeter(64)
@@ -75,7 +75,7 @@ function Level:load()
     local cwall = ColoredWall(world, 220, 200, 50, 400, "static", 100, 100, 100, 50)
     table.insert(self.walls, cwall)
 
-    self.darkness = 0 
+    self.darkness = 0
     self.maxElectrons = 22
     self.minElectrons = -1
     self.endtimer = 0
@@ -90,7 +90,7 @@ function Level:update(dt)
     world:update(dt)
     if self.minElectrons >= #self.el then
         self.endtimer = self.endtimer + dt
-        if self.endtimer > 1.5 then 
+        if self.endtimer > 1.5 then
             local canvas = love.graphics.newScreenshot()
             screenshot = love.graphics.newImage(canvas)
             local save = {}
@@ -141,7 +141,7 @@ function Level:update(dt)
         end
     end
 
-    if love.mouse.isDown("l") then
+    if love.mouse.isDown(1) then
         self.force = self.force + dt * 0.6
         self.down = true
         if self.force > 1 then
@@ -211,7 +211,6 @@ function Level:draw()
     end
     if self.feedback == true then
         love.graphics.setColor(200, 50, 0, 200*(1-self.feedbacktimer))
-        print(self.feedbacktimer)
         love.graphics.circle("fill", love.mouse.getX(), love.mouse.getY(), (20*(1-self.feedbacktimer)),100)
     end
 end
@@ -227,7 +226,7 @@ function Level:keypressed(key, u)
     elseif key == "escape" then
         stack:pop()
         stack:current():load()
-    elseif key == " " then
+    elseif key == "space" then
         if self.mousetype == 1 then
             self.mousetype = 2
         elseif self.mousetype == 2 then
@@ -247,20 +246,20 @@ end
 
 
 function Level:mousepressed(x, y, button)
-    if button == "m" then
+    if button == 3 then
         if self.mousetype == 1 then
             self.mousetype = 2
         elseif self.mousetype == 2 then
             self.mousetype = 1
         end
     end
-    if button == "l" then
+    if button == 1 then
         if (self.mousetype == 1) and (self.limitshock == 0) then
             self.feedback = true
             self.disabled = true
         end
     end
-    if button == "l" then
+    if button == 1 then
         if (self.magnetlimitp > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Electron")
             table.insert(self.magnet, magnet)
@@ -269,7 +268,7 @@ function Level:mousepressed(x, y, button)
             self.feedback = true
             self.disabled = true
         end
-    elseif button == "r" then
+    elseif button == 2 then
         if (self.magnetlimite > 0) and (self.mousetype == 2) then
             local magnet = Magnet(world, love.mouse.getX(), love.mouse.getY(), 20, 200, 12, "Proton")
             table.insert(self.magnet, magnet)
@@ -293,9 +292,9 @@ function Level:beginContact(a, b, coll)
     local objectb = b:getUserData()
 
     if (objecta.__name == "Proton") and (objectb.__name == "Electron") then
-        for index, value in pairs(self.el) do 
+        for index, value in pairs(self.el) do
             if value == objectb then
-            	
+
                 table.remove(self.el, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
     			p1.system:start()
@@ -305,7 +304,7 @@ function Level:beginContact(a, b, coll)
         end
         for index, value in pairs(self.proton) do
             if value == objecta then
-            	
+
                 table.remove(self.proton, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 255, 0, 0, 120)
     			p1.system:start()
@@ -314,9 +313,9 @@ function Level:beginContact(a, b, coll)
             end
         end
     elseif (objecta.__name == "Electron") and (objectb.__name == "Proton") then
-        for index, value in pairs(self.el) do 
+        for index, value in pairs(self.el) do
             if value == objecta then
-            	
+
                 table.remove(self.el, index)
                 local p1 = Explosion(value.body:getX(), value.body:getY(), 56, 222, 255, 120)
     			p1.system:start()
